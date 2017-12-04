@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <span class="apply-for-btn">
+    <span class="apply-for-btn" @click="personalApply">
       个人留学申请
     </span>
-    <span class="online-service-btn">
-      
-    </span>
+    <span class="online-service-btn" @click="service"> </span>
     <div class="web-container">
       <!-- header -->
       <WebHeader></WebHeader>
@@ -15,7 +13,8 @@
       <!-- footer -->
       <WebFooter></WebFooter>
     </div>
-   <!--  <div class="apply-for-modal">
+      <!-- 留学报名-->
+    <div class="apply-for-modal" :class="{hideApply:isHideApply}">
       <h4>留学报名</h4>
       <div>
         <div class="form-inline">
@@ -63,16 +62,17 @@
         <div class="form-inline">
           <span>手 机 号</span>
           <div class="form-main">
-            <Input v-model="applyDatas.name" placeholder="请输入您的手机号"></Input>
+            <Input v-model="applyDatas.phone" placeholder="请输入您的手机号"></Input>
           </div>
         </div>
         <div class="apply-submit-btn">
           立即报名
         </div>
       </div>
-      <div class="apply-close-btn"></div>
+      <div class="apply-close-btn" @click="closeApply"></div>
     </div>
-    <div class="online-service-modal">
+      <!-- 客服服务-->
+    <div class="online-service-modal" :class="{hideService:isHideService}">
       <div class="online-service-header">
       </div>
       <ul class="online-service-main">
@@ -95,7 +95,7 @@
           </a>
         </li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
@@ -104,17 +104,33 @@ import WebFooter from '@/components/web/Footer'
 export default {
   data() {
     return {
-      applyDatas: {
-        state: '',
-        name: '',
-
-      }
+        applyDatas: {
+            state: '',
+            name: '',
+            phone:''
+        },
+        isHideApply:true,
+        isHideService:true,
     }
   },
   components: {
     WebHeader,
     WebFooter
-  }
+  },
+  methods:{
+      //客服QQ
+      service(){
+          this.isHideService = !this.isHideService;
+      },
+      personalApply(){
+          this.isHideApply = !this.isHideApply;
+          // console.log(this.isHideApply);
+      },
+      closeApply(){
+          this.isHideApply = true;
+          // console.log(this.isHideApply);
+      }
+  },
 }
 
 </script>
@@ -138,7 +154,9 @@ export default {
 .fr {
   float: right;
 }
-
+.hideApply,.hideService{
+    display: none;
+}
 @media screen and (min-width: 1220px) {
   .apply-for-modal {
     height: 438px;

@@ -2,7 +2,7 @@
   <div class="cooperate-school-container">
     <h3 class="title">
 			各大院校
-			<span class="subhead">待提供的软文</span>
+			<!--<span class="subhead">待提供的软文</span>-->
 		</h3>
     <div class="cooperate-nav">
       <ul class="cooperate-nav-main">
@@ -34,6 +34,13 @@
     				</div>
     			</div>
     		</div>
+            <div class="cooperate-college-detail">
+                <p>地区:{{item.area}}</p>
+                <p>学校性质:{{item.natures}}</p>
+                <p>总费用:{{Math.floor(item.cost/1000)/10}}万 <span>录取率:{{item.acceptanceRate}}</span></p>
+                <p>排名:{{item.rank}}</p>
+                <p>教育部认证: {{item.authentication}}</p>
+            </div>
     	</li>
     </ul>
   </div>
@@ -76,18 +83,26 @@ export default {
         this.getSchoolList();
     },
     getSchoolList(){
-        this.$http.get('/frontend/college',{
+        /*this.$http.get('/frontend/college',{
             params:{
                 keywords:this.searchKey,
                 type:this.defaultType
             }
         }).then((res)=>{
+//              console.log(res.data.data);
             this.schoolListDatas = res.data.data.rows;
-        })
+        })*/
+          //请求各大院校的时候,不需要传参数
+          this.$http.get('/frontend/college')
+              .then((res)=>{
+              console.log(res.data.data);
+              this.schoolListDatas = res.data.data.rows;
+          })
     }
   },
   created(){
     this.getSchoolList();
+    console.log(this.$route.params.keywords);
   }
 }
 
@@ -188,10 +203,41 @@ export default {
     		margin-right: 20px;
     		margin-top: 15px;
     		overflow: hidden;
+             /*定位属性*/
+             position:relative;
     		&:nth-child(4n){
     			margin-right: 0;
     		}
     	}
+        .cooperate-college-detail{
+            width: 162px;
+            position: absolute;
+            /*left: -8px;*/
+            top:18px;
+            opacity: 0;
+            /*padding: 12px;*/
+            overflow: hidden;
+            color: #fff;
+            font-size: 12px;
+            box-shadow: 5px 3px 10px 1px rgb(0,0,0);
+            background: -webkit-linear-gradient(#545454 ,#333);
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -ms-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+            /*display:none;*/
+            p{
+                color:#fff;
+                text-indent:5px;
+                width: 100%;
+                text-overflow: hidden;
+                white-space: nowrap;
+            }
+            &:hover{
+                opacity: 0.7;
+             }
+        }
     }
     .cooperate-logo{
     	height: 109px;

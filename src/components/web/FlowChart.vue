@@ -3,7 +3,7 @@
     <div class="clearfix"></div>
     <h3 class="title">
 			流程
-			<span class="subhead">待提供的软文</span>
+			<!--<span class="subhead">待提供的软文</span>-->
 		</h3>
     <div class="flow-container">
       <div class="flow-img">

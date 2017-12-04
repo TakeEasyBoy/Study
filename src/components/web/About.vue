@@ -24,7 +24,7 @@
 		<div class="about-us">
 			<h3 class="title">
 				关于金桥
-				<span class="subhead">待提供的软文</span>
+				<!--<span class="subhead">待提供的软文</span>-->
 			</h3>
 			<div class="about-us-main">
 				<p>中新金桥的短期留学项目通过建立国内高校同海外名校件的直接合作关系，为学生提供半年或者一年的美国学习机会i，推动教育全球化发展。</p>

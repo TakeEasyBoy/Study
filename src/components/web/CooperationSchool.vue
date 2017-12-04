@@ -3,14 +3,14 @@
   	<div class="clearfix"></div>
     <h3 class="title">
 			合作院校
-			<span class="subhead">待提供的软文</span>
+			<!--<span class="subhead">待提供的软文</span>-->
 		</h3>
 		<div class="cooper-container">
 			<div class="cooper-header">
 				<ul class="cooper-select">
 					<li v-for="item in title" @click="selectChange(item.index)">
-            <span :class="item.isActive ? 'active' : ''">{{item.navInfo}}</span>
-          </li>
+                         <span :class="item.isActive ? 'active' : ''">{{item.navInfo}}</span>
+                     </li>
 				</ul>
 				<div class="cooper-btn">
 					<Button class="cooper-btns">综合排名</Button>
@@ -95,7 +95,7 @@ export default {
   	}
   },
   mounted(){
-  	
+
   },
 }
 

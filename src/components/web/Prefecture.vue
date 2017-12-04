@@ -2,16 +2,14 @@
   <div class="prefecture-container">
     <h3 class="title">
 			留学专区
-			<span class="subhead">测试文字</span>
+			<!--<span class="subhead">测试文字</span>-->
 		</h3>
     <ul class="perfecture-list">
       <li class="perfecture-each" v-for="(item,index) in dataList" :key="item.cname+index">
-        <div class="perfecture-each-bg">
-          <img :src="item.cover" alt="背景图">
+        <div @click="jumpTo(index)" class="perfecture-each-bg">
+          <img :src="item.cover"  alt="背景图">
           <div class="perfecture-each-intro">
-            <h5>
-							项目优势
-						</h5>
+            <h5>项目优势</h5>
             <p>
               {{item.introduce}}
             </p>
@@ -21,7 +19,7 @@
           </div>
         </div>
         <div class="perfecture-object">
-        	<h5>适合人群<span>MORE</span></h5>
+        	<h5>适合人群<span @click="jumpTo(index)">MORE</span></h5>
         	<p>
         		{{item.requirement}}
         	</p>
@@ -37,6 +35,7 @@ export default {
     return {
       coverList:['/static/image/jiaohuansheng.png','/static/image/zhuanshengpic.png','/static/image/xiaxiaopic.png','/static/image/zhishengpic.png','/static/image/jiaohuanshengpic.png'],
       dataList:[],
+      dataUrl:['./summersch','./exchangestu','./undergraduate','./ueec','./freshman']
     }
   },
   created(){
@@ -49,8 +48,14 @@ export default {
         res.data.data.forEach((item,index)=>{
           this.$set(item,'cover',this.coverList[index]);
         });
+//          console.log(res.data.data);
         this.dataList = res.data.data;
       })
+    },
+    // 跳转到指定页面
+    jumpTo(index){
+//        console.log(index);
+        this.$router.push(this.dataUrl[index]);
     }
   }
 }
@@ -90,17 +95,17 @@ export default {
     }
     .perfecture-each-intro {
       height: 260px;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      background-color: #fff;
-      opacity: 0.9;
-      padding: 12px;
-      overflow: hidden;
-      color: #000;
-      font-size: 12px;
-      -webkit-transition: -webkit-transform 0.35s;
-      transition: transform 0.35s;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        background-color: #fff;
+        opacity: 0.9;
+        padding: 12px;
+        overflow: hidden;
+        color: #000;
+        font-size: 12px;
+        -webkit-transition: -webkit-transform 0.35s;
+        transition: transform 0.35s;
       h5 {
         font-weight: bold;
       }

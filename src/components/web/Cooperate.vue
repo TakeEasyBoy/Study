@@ -8,7 +8,7 @@
     <div class="cooperate-ranking-now">
       <h3 class="title">
 			2017最新世界大学排名
-				<span class="subhead">待提供的软文</span>
+				<!--<span class="subhead">待提供的软文</span>-->
 			</h3>
       <ul class="ranking-now-container">
         <li>
@@ -70,6 +70,7 @@ export default {
     CooperateBanner,
     CooperateSchool,
   },
+
   created(){
     this.getSchoolRanking();
   },

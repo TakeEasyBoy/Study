@@ -2,48 +2,49 @@
 	<div class='capacity-container'>
 		<h3 class="title">
 			公司能力
-			<span class="subhead">测试文字</span>
+			<!--<span class="subhead">测试文字</span>-->
 		</h3>
 		<div class="capacity-main">
-			<div class="capacity-main-one">
-				<div class="capacity-one-list">
-					<img src="/static/image/nengli1.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-				<div class="capacity-one-list">
-					<img src="/static/image/nengli1.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-				<div class="capacity-one-list">
-					<img src="/static/image/nengli1.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-			</div>
-			<div  class="capacity-main-two">
-				<div class="capacity-two-top">
-					<img src="/static/image/nengli1.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-				<div class="capacity-two-bottom">
-					<img src="/static/image/nengli5.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-			</div>
-			<div  class="capacity-main-three">
-				<img src="/static/image/nengli6.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-			</div>
-			<div  class="capacity-main-two">
-				<div class="capacity-two-top">
-					<img src="/static/image/nengli1.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-				<div class="capacity-two-bottom">
-					<img src="/static/image/nengli5.jpg" alt="">
-					<p class="intro-main">说明文字</p>
-				</div>
-			</div>
-		</div>
+            <img src="/static/image/NENGLI.jpg" height="469" width="1219"/>
+        </div>
+        <!--<div class="capacity-main-one">-->
+				<!--<div class="capacity-one-list">-->
+					<!--<img src="/static/image/nengli1.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+				<!--<div class="capacity-one-list">-->
+					<!--<img src="/static/image/nengli1.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+				<!--<div class="capacity-one-list">-->
+					<!--<img src="/static/image/nengli1.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div  class="capacity-main-two">-->
+				<!--<div class="capacity-two-top">-->
+					<!--<img src="/static/image/nengli1.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+				<!--<div class="capacity-two-bottom">-->
+					<!--<img src="/static/image/nengli5.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div  class="capacity-main-three">-->
+				<!--<img src="/static/image/nengli6.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+			<!--</div>-->
+			<!--<div  class="capacity-main-two">-->
+				<!--<div class="capacity-two-top">-->
+					<!--<img src="/static/image/nengli1.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+				<!--<div class="capacity-two-bottom">-->
+					<!--<img src="/static/image/nengli5.jpg" alt="">-->
+					<!--<p class="intro-main">说明文字</p>-->
+				<!--</div>-->
+			<!--</div>-->
 	</div>
 </template>
 

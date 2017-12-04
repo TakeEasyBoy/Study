@@ -19,7 +19,10 @@
 			return {
 
 			}
-		}
+		},
+        method(){
+
+        }
 	}
 </script>
 

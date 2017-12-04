@@ -10,8 +10,8 @@
     <div class="cooperate-text">
       <h4>新闻动态</h4>
       <div class="cooperate-text-main">
-        <h5>这是标题</h5>
-        <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容</p>
+        <h5>{{newsData.title}}</h5>
+        <p>{{newsData.content}}</p>
       </div>
     </div>
   </div>
@@ -34,9 +34,23 @@ export default {
       }, {
         baseUrl: '/static/image/banner4.jpg',
         link: '',
-      }]
+      }],
+        newsData:{},
     }
-  }
+  },
+    methods:{
+    //获取新闻动态方法
+    getNews(){
+        this.$http.get('/frontend/article/news')
+            .then((res)=>{
+            //默认只展示第一条数据即可
+            this.newsData = res.data.data[0];
+        })
+    },
+  },
+    created(){
+        this.getNews();
+    }
 }
 
 </script>

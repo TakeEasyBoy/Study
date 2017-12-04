@@ -139,14 +139,15 @@ export default {
   },
   methods:{
   	getTable(){
-  		// if(this.flag){
-  		// 	this.flag = false;
-  		// 	$('.content-one').css('borderBottom','1px solid black');
-  		// }else{
-  		// 	this.flag = true;
-  		// 	$('.content-one').css('border','none');
-  		// }
-  	}
+  		 if(this.flag){
+  		 	this.flag = false;
+  		 	$('.content-one').css('borderBottom','1px solid black');
+  		 }else{
+  		 	this.flag = true;
+  		 	$('.content-one').css('border','none');
+  		 }
+  	},
+
   },
   mounted(){
     

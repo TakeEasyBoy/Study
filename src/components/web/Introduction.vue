@@ -32,17 +32,29 @@ export default {
       sliderDefault: 0,
 
       sliderDatas: [{
-        baseUrl: '/static/image/banner.jpg',
+        baseUrl: '/static/image/bannercolle1.jpg',
         link: '',
       }, {
-        baseUrl: '/static/image/banner.jpg',
+        baseUrl: '/static/image/bannercolle2.jpg',
         link: '',
       }, {
-        baseUrl: '/static/image/banner.jpg',
+        baseUrl: '/static/image/bannercolle3.jpg',
         link: '',
       }]
     }
   },
+    methods:{
+	    getIntro(){
+		    this.$http.get('/frontend/college')
+			    .then((res)=>{
+				    // this.newsData = res.data.data[0];
+                    console.log(res.data)
+			    })
+	    }
+    },
+    mounted(){
+	    this.getIntro();
+    }
 }
 
 </script>

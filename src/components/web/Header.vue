@@ -3,7 +3,7 @@
     <div class="web-header-main">
       <div class="logo"></div>
       <div class="search">
-        <Select v-model="searchType" class="search-select">
+        <Select v-model="searchType"  class="search-select">
           <Option value="1" style="font-size: 14px!important">全 部</Option>
           <Option value="2" style="font-size: 14px!important">交换生院校</Option>
           <Option value="3" style="font-size: 14px!important">专升本院校</Option>
@@ -11,7 +11,7 @@
           <Option value="5" style="font-size: 14px!important">直 升</Option>
         </Select>
         <input type="text" class="search-input" v-model="searchKey">
-        <Button class="search-btn">搜 索</Button>
+        <Button @click='searchMethod' class="search-btn">搜 索</Button>
       </div>
       <div class="tel-code">
         <span class="code"></span>
@@ -38,7 +38,6 @@ export default {
     return {
       searchType: '1',
       searchKey: '',
-
       nav:1,
     }
   },
@@ -79,6 +78,18 @@ export default {
           this.nav = 1;
           break;
       }
+    },
+      /*搜索功能,*/
+    searchMethod(){
+//      console.log(this.searchKey,this.searchType);
+      this.$router.push({
+          path: '/exchangestu',
+          name: 'Exchangestu',
+          params: {
+              keywords: this.searchKey,
+              type:this.searchType
+          }
+      })
     }
   },
   created(){

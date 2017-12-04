@@ -17,7 +17,7 @@
 						</h3>
             <p class="trend-intro">
               {{item.content}}
-              <span class="trend-intro-more">
+              <span  class="trend-intro-more" @click="jumpToDetailes">
 	            		MORE
 	            	</span>
             </p>
@@ -67,7 +67,19 @@ export default {
           this.newOffer = res.data.data.enroll[0];
         }
       })
-    }
+    },
+    jumpToDetailes(){
+          this.$http.get('/frontend/article/list')
+              .then((res)=>{
+              if (res.data.status == 200) {
+                  /*this.recentNews = res.data.data.news;
+                  this.abroadInfo = res.data.data.information[0];
+                  this.newOffer = res.data.data.enroll[0];*/
+                  console.log(res.data);
+              }
+          })
+      }
+
   },
   created(){
     this.getTrends();

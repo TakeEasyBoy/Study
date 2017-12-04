@@ -1,9 +1,6 @@
 <template>
   <div class="academy-container">
-    <h3 class="title">
-			热门院校推荐
-			<span class="subhead">测试文字</span>
-		</h3>
+    <h3 class="title">热门院校推荐</h3>
     <div class="academy-main">
       <ul class="academy-list">
         <li v-for="(item,index) in hotSchoolDatas" :key="item.id+index">
@@ -13,7 +10,9 @@
           <div class="academy-info">
             <h3>{{item.name}}</h3>
             <p>{{item.enName}}</p>
-            <span>了解详情</span>
+            <span @click="learnMore(item.url)">了解详情</span>
+            <!--<a :href="baidu.com">了解详情</a>-->
+
           </div>
         </li>
       </ul>
@@ -83,6 +82,7 @@ export default {
     getHotSchool(){
       this.$http.get('/frontend/college/hotRecommend')
       .then((res)=>{
+              console.log(res.data.data);
         this.hotSchoolDatas = res.data.data;
       })
     },
@@ -93,7 +93,11 @@ export default {
         this.wlRankingDatas = res.data.data.wlTop;
         this.jsRankingDatas = res.data.data.highTop;
       })
-    }
+    },
+      //了解更多页面跳转
+      learnMore(url){
+          window.open(url);
+      }
   }
 }
 
