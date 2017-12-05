@@ -25,7 +25,6 @@
         	</p>
         </div>
       </li>
-      
     </ul>
   </div>
 </template>

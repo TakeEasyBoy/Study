@@ -1,8 +1,6 @@
 <template>
   <div class="info-container">
-    <h5>
-						留学资讯
-					</h5>
+    <h5>留学资讯</h5>
     <ul>
       <li @click="$router.push('/infolist/details')" v-for="(item,index) in dataLists">
         <p>{{item.title}}</p>

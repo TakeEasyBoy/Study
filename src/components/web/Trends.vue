@@ -17,7 +17,7 @@
 						</h3>
             <p class="trend-intro">
               {{item.content}}
-              <span  class="trend-intro-more" @click="jumpToDetailes">
+              <span  class="trend-intro-more" @click="jumpToDetailes(item.id)">
 	            		MORE
 	            	</span>
             </p>
@@ -30,7 +30,7 @@
       			<div class="trend-other-inline"></div>
       		</div>
       		<div class="trend-other-content">
-      			<h4>留学资讯<span>MORE</span></h4>
+      			<h4>留学资讯<span @click="jumpToDetailes(abroadInfo.id)">MORE</span></h4>
       			<p>{{abroadInfo.content}}</p>
       		</div>
       	</div>
@@ -39,7 +39,7 @@
       			<div class="trend-other-inline1"></div>
       		</div>
       		<div class="trend-other-content">
-      			<h4>最新录取<span>MORE</span></h4>
+      			<h4>最新录取<span @click="jumpToDetailes(newOffer.id)">MORE</span></h4>
       			<p>{{newOffer.content}}</p>
       		</div>
       	</div>
@@ -68,16 +68,8 @@ export default {
         }
       })
     },
-    jumpToDetailes(){
-          this.$http.get('/frontend/article/list')
-              .then((res)=>{
-              if (res.data.status == 200) {
-                  /*this.recentNews = res.data.data.news;
-                  this.abroadInfo = res.data.data.information[0];
-                  this.newOffer = res.data.data.enroll[0];*/
-                  console.log(res.data);
-              }
-          })
+    jumpToDetailes(id){
+	    this.$router.push('/infolist/details?id='+id);
       }
 
   },

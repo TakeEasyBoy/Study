@@ -3,37 +3,30 @@
     <div class="info-list-banner"></div>
     <!-- 资讯 -->
     <div class="info-list">
-      <h3 class="title">
+        <h3 class="title">
 			资讯{{$route.fullPath.indexOf('details')!=-1?'详情':''}}
-				<!--<span class="subhead">待提供的软文</span>-->
-				<span class="subnav">
-					当前位置：
-					<a href="#" @click.prevent="$router.push('/')">首页</a>
-					> 留学资讯
-					 {{$route.fullPath.indexOf('details')!=-1?'> 资讯详情':''}}
-				</span>
-			</h3>
+            <span class="subnav">
+                当前位置：
+                <a href="#" @click.prevent="$router.push('/')">首页</a>
+                > 留学资讯
+                {{$route.fullPath.indexOf('details')!=-1?'> 资讯详情':''}}
+            </span>
+        </h3>
       <div class="info-list-main">
       	<div class="info-list-list">
       		<router-view></router-view>
       	</div>
         <div class="info-recommend">
           <div>
-            <h5>
-                最新动态
-                <span>MORE</span>
-            </h5>
-          <p>
-            留学资讯 2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25
-          </p>
+            <h5>最新动态<span>MORE</span></h5>
+            <p v-for="(item,index) in informations">
+                {{item.content}}
+            </p>
           </div>
           <div>
-            <h5>
-              最新录取
-              <span>MORE</span>
-            </h5>
-              <p>
-                留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25留学资讯2017-02-15 02:32:25
+            <h5>最新录取<span>MORE</span></h5>
+              <p v-for="(item,index) in enrolls">
+                  {{item.content}}
               </p>
           </div>
         </div>
@@ -45,7 +38,9 @@
 export default {
   data() {
     return {
-        dataLists:[]
+        enrolls:[],
+        news:[],
+        informations:[]
     }
   },
     methods:{
@@ -53,13 +48,15 @@ export default {
 	        this.$http.get('/frontend/article/list')
 		        .then((res)=>{
 			        console.log(res.data.data);
-			        this.dataLists = res.data.data;
+			        this.enrolls = res.data.data.enroll;
+			        this.news = res.data.data.news;
+			        this.informations = res.data.data.information;
 		        })
         }
     },
-  created(){
-  	// console.log(this.$route)
-  },
+    created(){
+     // console.log(this.$route)
+    },
     mounted(){
   	    this.getStudyAbord();
     }

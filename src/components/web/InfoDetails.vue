@@ -1,15 +1,14 @@
 <template>
-	<div class="info-details-container">
-		<h3>2016 US News 美国大学本科排名（艺术类）</h3>
-		<p>
-			<span>2013年11月09日</span>
+	<div class="info-details-container" >
+		<h3>{{newsDetails.title}}</h3>
+		<p >
+			<span>{{newsDetails.createTime}}</span>
 			<span>来源于：留学网</span>
 			<span>编辑：888888</span>
 			<span>浏览：186次</span>
 		</p>
 		<div>
-			<p>2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）</p>
-			<p>2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）2016 US News 美国大学本科排名（艺术类）</p>
+            <p>{{newsDetails.content}}</p>
 		</div>
 	</div>
 </template>
@@ -17,11 +16,27 @@
 	export default {
 		data() {
 			return {
-
+				queryId:'',
+                newsDetails:{}
 			}
 		},
-        method(){
-
+		methods:{
+			//获取新闻详情方法
+            getNewsDetail(id){
+            	this.$http.get('/frontend/article/news?id='+id)
+                    .then((res)=>{
+                    	this.newsDetails = res.data.data[0];
+                    	// console.log(res.data.data[0])
+                    })
+            }
+        },
+        created(){
+			//获取查询ID
+			this.queryId = this.$route.query.id;
+			console.log(this.queryId)
+        },
+        mounted() {
+	        this.getNewsDetail(this.queryId);
         }
 	}
 </script>
