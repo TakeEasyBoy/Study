@@ -10,7 +10,7 @@
           <Option value="4" style="font-size: 14px!important">夏 校</Option>
           <Option value="5" style="font-size: 14px!important">直 升</Option>
         </Select>
-        <input type="text" class="search-input" v-model="searchKey">
+        <input type="text" class="search-input" @keyup.enter="searchMethod" v-model="searchKey">
         <Button @click='searchMethod' class="search-btn">搜 索</Button>
       </div>
       <div class="tel-code">

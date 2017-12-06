@@ -33,10 +33,10 @@
         created(){
 			//获取查询ID
 			this.queryId = this.$route.query.id;
-			console.log(this.queryId)
+//			console.log(this.queryId)
+			this.getNewsDetail(this.queryId);
         },
         mounted() {
-	        this.getNewsDetail(this.queryId);
         }
 	}
 </script>
@@ -66,7 +66,7 @@
 				}
 			}
 			>div{
-				padding: 10px 18px; 
+				padding: 10px 18px;
 				border-bottom: 1px solid #999 ;
 			}
 		}

@@ -41,10 +41,10 @@ export default {
 		}
 	},
 	created(){
-		// console.log(this.$route)
+		this.getStudyAbord();
 	},
 	mounted(){
-		this.getStudyAbord();
+//		this.getStudyAbord();
 	}
 }
 

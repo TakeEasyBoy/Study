@@ -6,7 +6,7 @@
   		</div>
   		<div class="content-text fl">
   			<div class="content-title">
-  				<span>澳大利亚国立大学</span><button >咨询</button>
+  				<span>澳大利亚国立大学 all</span><button >咨询</button>
   			</div>
   			<div class="content-content">
   				<div class="part-two fl">
@@ -32,7 +32,7 @@
   			<div class="content-table" v-show="flag">
   				<Table :columns="columns1" :data="data1"></Table>
   			</div>
-  		</div>	
+  		</div>
   	</div>
   	<div class="content-one">
   		<div class="content-img fl">
@@ -66,16 +66,16 @@
   			<div class="content-table" v-show="flag">
   				<Table :columns="columns1" :data="data1"></Table>
   			</div>
-  		</div>	
+  		</div>
   	</div>
   </div>
 </template>
 <script>
 export default {
 	props:['index'],
-  data() {
-    return {
-    	 columns1: [
+  	data() {
+    	return {
+    	 	columns1: [
             {
                 title: '专业',
                 key: 'name'
@@ -101,7 +101,7 @@ export default {
                 key: 'address'
             }
         ],
-        data1: [
+        	data1: [
             {
                 name: '电脑工程',
                 age: '|',
@@ -133,25 +133,37 @@ export default {
                 date: '......'
             }
         ],
-
-        flag:true,
-    }
-  },
-  methods:{
-  	getTable(){
-  		 if(this.flag){
+        	flag:true,
+    	}
+  	},
+  	methods:{
+  		getTable(){
+  		/* if(this.flag){
   		 	this.flag = false;
   		 	$('.content-one').css('borderBottom','1px solid black');
   		 }else{
   		 	this.flag = true;
   		 	$('.content-one').css('border','none');
-  		 }
-  	},
-
-  },
-  mounted(){
-    
-  }
+  		 }*/
+  		},
+		testData(){
+			this.$http.get('/frontend/category/nameList')
+				.then((res)=>{
+					console.log(res.data.data);
+					return res.data.data[1].id;
+				})
+				.then((id)=>{
+					this.$http.get(`/frontend/category/info?cateId=${id}`)
+						.then((res)=>{
+							console.log(res.data.data.colleges.rows);
+						})
+				})
+		}
+	  },
+	created(){
+//		console.log('====----props',this.$props.index);
+		this.testData();
+	}
 }
 
 </script>
@@ -207,7 +219,7 @@ export default {
 				margin-top: 6px;
 			}
 		}
-		
+
 	}
 }
 

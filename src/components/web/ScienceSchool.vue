@@ -6,7 +6,7 @@
       </div>
       <div class="content-text fl">
         <div class="content-title">
-          <span>澳大利亚国立大学</span><button >咨询</button>
+          <span>澳大利亚国立大学sci</span><button >咨询</button>
         </div>
         <div class="content-content">
           <div class="part-two fl">
@@ -32,7 +32,7 @@
         <div class="content-table" v-show="flag">
           <Table :columns="columns1" :data="data1"></Table>
         </div>
-      </div>  
+      </div>
     </div>
     <div class="content-one">
       <div class="content-img fl">
@@ -66,7 +66,7 @@
         <div class="content-table" v-show="flag">
           <Table :columns="columns1" :data="data1"></Table>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
@@ -139,11 +139,11 @@ export default {
   },
   methods:{
     getTable(){
-      
+
     }
   },
   mounted(){
-    
+
   }
 }
 
@@ -200,7 +200,7 @@ export default {
         margin-top: 6px;
       }
     }
-    
+
   }
 }
 

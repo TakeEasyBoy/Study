@@ -1,6 +1,6 @@
 <template>
   <div class="web-index-container">
-    
+
     <!-- 轮播 -->
     <WebSliderNav></WebSliderNav>
     <!-- 留学意义 -->
@@ -44,8 +44,6 @@ export default {
 
 .web-index-container {
   font-size: 14px;
-
-
 }
 
 </style>

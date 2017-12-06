@@ -5,7 +5,7 @@
         <p>简介</p>
       </div>
       <div class="intro-text">
-        <div class="intro-text-one">
+       <!-- <div class="intro-text-one">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
         </div>
         <div class="intro-text-two">
@@ -13,7 +13,10 @@
         </div>
         <div class="intro-text-three">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
-        </div>
+        </div>-->
+		  <div class="intro-text-one">
+			  &emsp;&emsp;{{introductions}}
+		  </div>
       </div>
     </div>
     <div class="intro-right">
@@ -29,31 +32,59 @@
 export default {
   data() {
     return {
-      sliderDefault: 0,
+      	sliderDefault: 0,
 
-      sliderDatas: [{
-        baseUrl: '/static/image/bannercolle1.jpg',
-        link: '',
-      }, {
-        baseUrl: '/static/image/bannercolle2.jpg',
-        link: '',
-      }, {
-        baseUrl: '/static/image/bannercolle3.jpg',
-        link: '',
-      }]
+		sliderDatas: [{
+			baseUrl: '/static/image/bannercolle1.jpg',
+			link: '',
+		}, {
+			baseUrl: '/static/image/bannercolle2.jpg',
+			link: '',
+		}, {
+			baseUrl: '/static/image/bannercolle3.jpg',
+			link: '',
+		}],
+		//banner介绍文字
+		introductions:'',
+		//根据路由找对应的ID,默认为1
+		queryType:1
     }
   },
     methods:{
-	    getIntro(){
-		    this.$http.get('/frontend/college')
+	    getIntro(id){
+		    this.$http.get(`/frontend/category/info?cateId=${id}`)
 			    .then((res)=>{
-				    // this.newsData = res.data.data[0];
-                    console.log(res.data)
+				     this.introductions = res.data.data.info.introduce;
+//                    console.log(res.data.data.info);
 			    })
-	    }
+	    },
+		//获取导航栏对应的跳转
+		getCurrentPath(item){
+			switch (item){
+				case 'Summersch':
+					this.queryType = 1;
+					break;
+				case 'Exchangestu':
+					this.queryType = 2;
+					break;
+				case 'Undergraduate':
+					this.queryType = 3;
+					break;
+				case 'Ueec':
+					this.queryType = 4;
+					break;
+				case 'Freshman':
+					this.queryType = 5;
+					break;
+				default:
+					break;
+			}
+	    	return this.queryType;
+		}
     },
-    mounted(){
-	    this.getIntro();
+    created(){
+  		let query = this.$route.name;
+	    this.getIntro(this.getCurrentPath(query));
     }
 }
 

@@ -1,14 +1,11 @@
 <template>
   <div class="cooper-all">
   	<div class="clearfix"></div>
-    <h3 class="title">
-			合作院校
-			<!--<span class="subhead">待提供的软文</span>-->
-		</h3>
+    <h3 class="title">合作院校</h3>
 		<div class="cooper-container">
 			<div class="cooper-header">
 				<ul class="cooper-select">
-					<li v-for="item in title" @click="selectChange(item.index)">
+					<li v-for="(item,index) in title" @click="selectChange(item,item.index)">
                          <span :class="item.isActive ? 'active' : ''">{{item.navInfo}}</span>
                      </li>
 				</ul>
@@ -24,7 +21,7 @@
 					<button class="input-btn">查询</button>
 				</div>
 			</div>
-			
+
 			<div class="cooper-content">
 				<AllSchool :index = 'index' ></AllSchool>
 				<University :index = 'index'></University>
@@ -72,8 +69,8 @@ export default {
         index:5
       }],
 
-      
-      index:0,
+//		isActive:true,
+      	index:0,
     }
   },
   components:{
@@ -90,8 +87,11 @@ export default {
   	 * @作者     王柳
   	 * @日期     2017-11-07
   	 */
-  	selectChange(index){
+  	selectChange(item,index){
+//  		console.log(item);
   		this.index = index;
+  		console.log(this.index);
+//  		this.title[index].isActive = true;
   	}
   },
   mounted(){

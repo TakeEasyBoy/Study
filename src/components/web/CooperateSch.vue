@@ -102,7 +102,7 @@ export default {
   },
   created(){
     this.getSchoolList();
-    console.log(this.$route.params.keywords);
+//    console.log(this.$route.params.keywords);
   }
 }
 
@@ -235,7 +235,7 @@ export default {
                 white-space: nowrap;
             }
             &:hover{
-                opacity: 0.7;
+                opacity: 0.8;
              }
         }
     }
@@ -254,7 +254,7 @@ export default {
 				font-size: 14px;
 				margin: 0 0 9px;
 				overflow: hidden;
-				text-overflow: ellipsis; 
+				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
 			h5{
