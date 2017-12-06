@@ -158,11 +158,19 @@ export default {
 							console.log(res.data.data.colleges.rows);
 						})
 				})
-		}
+		},
+        getSchoolInfo(id){
+	        this.$http.get(`/frontend/category/info?cateId=${id}`)
+		        .then((res)=>{
+			        console.log(res.data.data.colleges.rows);
+		        })
+        }
+
 	  },
 	created(){
-//		console.log('====----props',this.$props.index);
-		this.testData();
+		console.log(this.$props.index);
+        // this.getSchoolInfo();
+		// this.testData();
 	}
 }
 

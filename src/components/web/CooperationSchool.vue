@@ -41,6 +41,7 @@ import ArtsSchool from '@/components/web/ArtsSchool';
 import ScienceSchool from '@/components/web/ScienceSchool';
 import CommunitySchool from '@/components/web/CommunitySchool';
 export default {
+	// props:['index'],
   data() {
     return {
     	title: [{
@@ -70,7 +71,7 @@ export default {
       }],
 
 //		isActive:true,
-      	index:0,
+        index:0
     }
   },
   components:{
@@ -90,13 +91,13 @@ export default {
   	selectChange(item,index){
 //  		console.log(item);
   		this.index = index;
-  		console.log(this.index);
+  		// console.log(this.index);
 //  		this.title[index].isActive = true;
   	}
   },
-  mounted(){
-
-  },
+    created(){
+        // console.log(this.$props.index);
+    },
 }
 
 </script>

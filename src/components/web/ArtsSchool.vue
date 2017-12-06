@@ -143,7 +143,8 @@ export default {
     }
   },
   created(){
-//	console.log('===-=-=-=art',this.$props.index);
+	console.log('===-=-=-=art',this.$props.index);
+
   }
 }
 
