@@ -23,11 +23,11 @@
       <li :class="this.nav == 2?'selected':''" @click="$router.push('/about')">关于金桥</li>
       <li :class="this.nav == 3?'selected':''" @click="$router.push('/cooperate')">合作院校</li>
       <li :class="this.nav == 4?'selected':''" @click="$router.push('/service')">服务</li>
-      <li :class="this.nav == 5?'selected':''" @click="$router.push('/summersch')">夏校</li>
-      <li :class="this.nav == 6?'selected':''" @click="$router.push('/exchangestu')">交换生</li>
-      <li :class="this.nav == 7?'selected':''" @click="$router.push('/undergraduate')">专升本</li>
-      <li :class="this.nav == 8?'selected':''" @click="$router.push('/ueec')">直升</li>
-      <li :class="this.nav == 9?'selected':''" @click="$router.push('/freshman')">插班生</li>
+      <li :class="this.nav == 5?'selected':''" @click="$router.push({path:'/summersch',query:{id:1}})">夏校</li>
+      <li :class="this.nav == 6?'selected':''" @click="$router.push({path:'/exchangestu',query:{id:2}})">交换生</li>
+      <li :class="this.nav == 7?'selected':''" @click="$router.push({path:'/undergraduate',query:{id:3}})">专升本</li>
+      <li :class="this.nav == 8?'selected':''" @click="$router.push({path:'/ueec',query:{id:4}})">直升</li>
+      <li :class="this.nav == 9?'selected':''" @click="$router.push({path:'/freshman',query:{id:5}})">插班生</li>
       <li :class="this.nav == 10?'selected':''" @click="$router.push('/contact')">联系我们</li>
     </ul>
   </div>
@@ -85,9 +85,10 @@ export default {
       this.$router.push({
           path: '/exchangestu',
           name: 'Exchangestu',
-          params: {
+          query: {
               keywords: this.searchKey,
-              type:this.searchType
+              type:this.searchType,
+			  id:2
           }
       })
     }

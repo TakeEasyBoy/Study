@@ -1,9 +1,9 @@
-<template>
+<!--<template>
   <div class="flow-all">
     <div class="clearfix"></div>
     <h3 class="title">
 			流程
-			<span class="subhead">待提供的软文</span>
+			&lt;!&ndash;<span class="subhead">待提供的软文</span>&ndash;&gt;
 		</h3>
     <div class="flow-container">
       <div class="flow-img">
@@ -11,8 +11,8 @@
       </div>
     </div>
   </div>
-</template>
-<script>
+</template>-->
+<!--<script>
 export default {
   data() {
     return {
@@ -23,18 +23,17 @@ export default {
 
 </script>
 <style lang="less">
-@media screen and (min-width: 1220px) {
-  .flow-all {
-    height: 300px;
-    margin: 54px 0;
-    .flow-container {
-      height: 218px;
-      margin-top: 38px;
-    }
-  }
-}
-
-</style>
+	@media screen and (min-width: 1220px) {
+	  .flow-all {
+		height: 300px;
+		margin: 54px 0;
+		.flow-container {
+		  height: 218px;
+		  margin-top: 38px;
+		}
+	  }
+	}
+</style>-->
 <template>
   <div class="introduction-container">
     <!-- 简介 -->

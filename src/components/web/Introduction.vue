@@ -58,7 +58,7 @@ export default {
 //                    console.log(res.data.data.info);
 			    })
 	    },
-		//获取导航栏对应的跳转
+		//获取导航栏对应的跳转 ,舍弃不用，使用url跳转传递对应ID即可，
 		getCurrentPath(item){
 			switch (item){
 				case 'Summersch':
@@ -83,8 +83,8 @@ export default {
 		}
     },
     created(){
-  		let query = this.$route.name;
-	    this.getIntro(this.getCurrentPath(query));
+  		let query = this.$route.query.id;
+	    this.getIntro(query);
     }
 }
 

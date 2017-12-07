@@ -36,6 +36,8 @@ export default {
     WebPrefecture,
     WebAcademy,
     WebCapacity
+  },
+  created(){
   }
 }
 

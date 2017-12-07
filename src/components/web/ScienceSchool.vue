@@ -1,73 +1,39 @@
 <template>
   <div class="science-all" v-show="index == 4">
-    <div class="content-one">
-      <div class="content-img fl">
-        <img src="/static/image/kuang.jpg" alt="">
-      </div>
-      <div class="content-text fl">
-        <div class="content-title">
-          <span>澳大利亚国立大学sci</span><button >咨询</button>
-        </div>
-        <div class="content-content">
-          <div class="part-two fl">
-            <span>所在州省：北部地区</span>
-            <span>总费用：$48.452</span>
-            <span>官网：wwwmic.edu</span>
-            <span>课程内容：夏校CFP课程（一门学分）</span>
-          </div>
-          <div class="part-three fl">
-            <span>学校性质：私立</span>
-            <span>录取率：8.20%</span>
-            <span>招生对象：高中在读或者刚毕业</span>
-            <span>课程时间：7.3-8.11</span>
-          </div>
-          <div class="part-four fl">
-            <span>综合排名：2</span>
-            <span>中国教育部是否认证：认证</span>
-            <span>语言要求：托福80雅思6.5或者等同</span>
-            <span class="top-span" @click="getTable">专业排行&gt&gt</span>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="content-table" v-show="flag">
-          <Table :columns="columns1" :data="data1"></Table>
-        </div>
-      </div>
-    </div>
-    <div class="content-one">
-      <div class="content-img fl">
-        <img src="/static/image/kuang.jpg" alt="">
-      </div>
-      <div class="content-text fl">
-        <div class="content-title">
-          <span>澳大利亚国立大学</span><button >咨询</button>
-        </div>
-        <div class="content-content">
-          <div class="part-two fl">
-            <span>所在州省：北部地区</span>
-            <span>总费用：$48.452</span>
-            <span>官网：wwwmic.edu</span>
-            <span>课程内容：夏校CFP课程（一门学分）</span>
-          </div>
-          <div class="part-three fl">
-            <span>学校性质：私立</span>
-            <span>录取率：8.20%</span>
-            <span>招生对象：高中在读或者刚毕业</span>
-            <span>课程时间：7.3-8.11</span>
-          </div>
-          <div class="part-four fl">
-            <span>综合排名：2</span>
-            <span>中国教育部是否认证：认证</span>
-            <span>语言要求：托福80雅思6.5或者等同</span>
-            <span class="top-span" @click="getTable">专业排行&gt&gt</span>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="content-table" v-show="flag">
-          <Table :columns="columns1" :data="data1"></Table>
-        </div>
-      </div>
-    </div>
+	  <div class="content-one" v-for="(item,index) in collegeLists">
+		  <div class="content-img fl">
+			  <img src="/static/image/kuang.jpg" alt="">
+		  </div>
+		  <div class="content-text fl">
+			  <div class="content-title">
+				  <span>{{item.name}}</span><button >咨询</button>
+			  </div>
+			  <div class="content-content">
+				  <div class="part-two fl">
+					  <span>所在州省：{{item.area}}</span>
+					  <span>总费用：$:{{(item.cost/1000)/10}}万</span>
+					  <span>官网：{{item.officialUrl}}</span>
+					  <span>课程内容：{{item.content}}</span>
+				  </div>
+				  <div class="part-three fl">
+					  <span>学校性质：{{item.natures}}</span>
+					  <span>录取率：{{item.acceptanceRate}}</span>
+					  <span>招生对象：{{item.target}}</span>
+					  <span>课程时间：{{item.courseDate}}</span>
+				  </div>
+				  <div class="part-four fl">
+					  <span>综合排名：{{item.rank}}</span>
+					  <span>中国教育部是否认证：{{item.authentication}}</span>
+					  <span>语言要求：{{item.language}}</span>
+					  <span class="top-span" @click="getTable">专业排行&gt&gt</span>
+				  </div>
+			  </div>
+			  <div class="clearfix"></div>
+			  <div class="content-table" v-show="flag">
+				  <Table :columns="columns1" :data="data1"></Table>
+			  </div>
+		  </div>
+	  </div>
   </div>
 </template>
 <script>
@@ -133,17 +99,25 @@ export default {
                 date: '......'
             }
         ],
-
+		collegeLists:[],
         flag:true,
     }
   },
   methods:{
     getTable(){
-
-    }
+		this.flag = !this.flag;
+    },
+	  getSchoolLists(id){
+		  this.$http.get(`/frontend/category/info?cateId=${id}&type=文理学院`)
+			  .then((res)=>{
+				  this.collegeLists = res.data.data.colleges.rows;
+//				  console.log(this.collegeLists)
+			  })
+	  }
   },
   mounted(){
-
+	  let id = this.$route.query.id;
+	  this.getSchoolLists(id);
   }
 }
 

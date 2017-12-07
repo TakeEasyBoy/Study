@@ -22,7 +22,11 @@ export default {
     Introduction,
     FlowChart,
     CooperationSchool,
-  }
+  },
+	created(){
+  		console.log(this.$route.name)
+	}
+
 }
 
 </script>

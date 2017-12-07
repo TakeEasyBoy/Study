@@ -17,13 +17,13 @@
 				</div>
 				<div class="cooper-input">
 					<span class="cooper-span">院校查询：</span>
-					<input type="text" class="input-box" placeholder="请输入要查询的院校"></input>
-					<button class="input-btn">查询</button>
+					<input type="text" class="input-box" v-model="searchKeywords" @keyup.enter="searchSchool(searchKeywords)" placeholder="请输入要查询的院校"></input>
+					<button class="input-btn" @click="searchSchool(searchKeywords)">查询</button>
 				</div>
 			</div>
 
 			<div class="cooper-content">
-				<AllSchool :index = 'index' ></AllSchool>
+				<AllSchool :index = 'index'  ></AllSchool>
 				<University :index = 'index'></University>
 				<MiddleSchool :index = 'index'></MiddleSchool>
 				<ArtsSchool :index = 'index'></ArtsSchool>
@@ -41,7 +41,6 @@ import ArtsSchool from '@/components/web/ArtsSchool';
 import ScienceSchool from '@/components/web/ScienceSchool';
 import CommunitySchool from '@/components/web/CommunitySchool';
 export default {
-	// props:['index'],
   data() {
     return {
     	title: [{
@@ -71,7 +70,8 @@ export default {
       }],
 
 //		isActive:true,
-        index:0
+      	index:0,
+		searchKeywords:''
     }
   },
   components:{
@@ -88,25 +88,29 @@ export default {
   	 * @作者     王柳
   	 * @日期     2017-11-07
   	 */
-  	selectChange(item,index){
-//  		console.log(item);
-  		this.index = index;
-  		// console.log(this.index);
-//  		this.title[index].isActive = true;
-  	}
+		selectChange(item,index){
+		//  		console.log(item);
+			this.index = index;
+			console.log(this.index);
+		//  		this.title[index].isActive = true;
+		},
+	  //学校搜索
+	  searchSchool(keywords){
+  		  console.log('search school',keywords);
+	  },
   },
-    created(){
-        // console.log(this.$props.index);
-    },
+  created(){
+	console.log('coor----',this.$route.name);
+  },
 }
 
 </script>
 <style lang="less">
 .cooper-all{
-	height: 1020px;
+	height: auto;
 	margin: 54px 0;
 	.cooper-container{
-		height:970px ;
+		height:auto ;
 		.cooper-header{
 			height: 72px;
 			border-bottom: 1px solid black;
@@ -159,6 +163,9 @@ export default {
 					color: white;
 				}
 			}
+		}
+		.cooper-content{
+			height:100%;
 		}
 	}
 }
