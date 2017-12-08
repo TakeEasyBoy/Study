@@ -10,9 +10,9 @@
                      </li>
 				</ul>
 				<div class="cooper-btn">
-					<Button class="cooper-btns">综合排名</Button>
-					<Button class="cooper-btns">总费用</Button>
-					<Button class="cooper-btns">人气</Button>
+					<Button class="cooper-btns" @click="sortRank">综合排名</Button>
+					<Button class="cooper-btns" @click="sortFee">总费用</Button>
+					<Button class="cooper-btns" @click="sortHot">人气</Button>
 					<Button class="cooper-btns">筛选</Button>
 				</div>
 				<div class="cooper-input">
@@ -23,7 +23,7 @@
 			</div>
 
 			<div class="cooper-content">
-				<AllSchool :index = 'index'  ></AllSchool>
+				<AllSchool :index = 'index'></AllSchool>
 				<University :index = 'index'></University>
 				<MiddleSchool :index = 'index'></MiddleSchool>
 				<ArtsSchool :index = 'index'></ArtsSchool>
@@ -71,7 +71,8 @@ export default {
 
 //		isActive:true,
       	index:0,
-		searchKeywords:''
+		searchKeywords:'',
+
     }
   },
   components:{
@@ -96,11 +97,29 @@ export default {
 		},
 	  //学校搜索
 	  searchSchool(keywords){
-  		  console.log('search school',keywords);
+//  		  console.log('search school',keywords);
+
+		  this.$http.get(`/frontend/college?keywords=${keywords}`)
+			  .then((res)=>{
+					console.log(res.data.data);
+			  })
 	  },
+	  //综合排名
+	  sortRank(){
+		  console.log("sortRank")
+	  },
+	  //总费用
+	  sortFee(){
+		  console.log("sortFee")
+	  },
+	  //人气
+	  sortHot(){
+		  console.log("sortHot")
+	  }
   },
   created(){
-	console.log('coor----',this.$route.name);
+//	console.log('coor----',this.$route.query);
+
   },
 }
 

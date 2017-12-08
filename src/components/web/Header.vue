@@ -39,6 +39,8 @@ export default {
       searchType: '1',
       searchKey: '',
       nav:1,
+		jumpName:'',
+		jumpPath:''
     }
   },
   methods:{
@@ -79,12 +81,38 @@ export default {
           break;
       }
     },
+	getPathName(type){
+    	let obj = {};
+    	switch(type) {
+			case '1':
+			case '4':
+				obj.jumpPath = './summersch';
+				obj.jumpName = 'Summersch';
+				break;
+			case '2':
+				obj.jumpPath = './exchangestu';
+				obj.jumpName = 'Exchangestu';
+				break;
+			case '3':
+				obj.jumpPath = './undergraduate';
+				obj.jumpName = 'Undergraduate';
+				break;
+			case '5':
+				obj.jumpPath = './ueec';
+				obj.jumpName = 'Ueec';
+				break;
+			default:
+				break;
+		}
+		return obj;
+	},
       /*搜索功能,*/
     searchMethod(){
+//		console.log(this.getPathName(this.searchType));
 //      console.log(this.searchKey,this.searchType);
       this.$router.push({
-          path: '/exchangestu',
-          name: 'Exchangestu',
+          path:this.getPathName(this.searchType).jumpPath ,
+          name:this.getPathName(this.searchType).jumpName ,
           query: {
               keywords: this.searchKey,
               type:this.searchType,

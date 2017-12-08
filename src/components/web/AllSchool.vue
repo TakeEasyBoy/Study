@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-	props:['index'],
+	props:['index','Keywords'],
   	data() {
     	return {
     	 	columns1: [
@@ -138,7 +138,7 @@ export default {
 		}
 	  },
 	created(){
-		console.log(this.$props.index)
+		console.log(this.$props)
 		let id = this.$route.query.id;
 		this.getSchoolLists(id);
 	}

@@ -11,8 +11,8 @@
       <div class="cooperate-nav-search">
         <span>院校查询：</span>
         <div class="search">
-          <input type="text" class="search-input" v-model="searchKey" placeholder="请输入您要查询的院校" @keydown.enter='getSchoolList'>
-          <Button class="search-btn" @click="getSchoolList">搜 索</Button>
+          <input type="text" class="search-input" v-model="searchKey" placeholder="请输入您要查询的院校" @keyup.enter='getSearchResult(searchKey)'>
+          <Button class="search-btn" @click="getSearchResult(searchKey)">搜 索</Button>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       searchKey: '',
-
+		searchResult:true,
       defaultType:'全部',
 
       schoolTypeList:[{
@@ -66,8 +66,8 @@ export default {
         value:'艺术学院',
         label:'艺术学院',
       },{
-        value:'文理大学',
-        label:'文理大学',
+        value:'文理学院',
+        label:'文理学院',
       },{
         value:'社区大学',
         label:'社区大学',
@@ -80,9 +80,9 @@ export default {
   methods:{
     changeSchoolType(item,index){
         this.defaultType = item.value;
-        this.getSchoolList();
+        this.getSchoolList(this.defaultType);
     },
-    getSchoolList(){
+    getSchoolList(type){
         /*this.$http.get('/frontend/college',{
             params:{
                 keywords:this.searchKey,
@@ -92,17 +92,38 @@ export default {
 //              console.log(res.data.data);
             this.schoolListDatas = res.data.data.rows;
         })*/
-          //请求各大院校的时候,不需要传参数
-          this.$http.get('/frontend/college')
-              .then((res)=>{
-              console.log(res.data.data);
-              this.schoolListDatas = res.data.data.rows;
-          })
-    }
+          //请求全部的时候,不需要传参数
+		if(type == '全部'){
+			this.$http.get(`/frontend/college`)
+				.then((res)=>{
+					this.schoolListDatas = res.data.data.rows;
+				})
+		}else{
+			this.$http.get(`/frontend/college?type=${type}`)
+				.then((res)=>{
+					this.schoolListDatas = res.data.data.rows;
+				})
+		}
+
+    },
+	  //搜索
+	  getSearchResult(keywords){
+		  this.$http.get(`/frontend/college?keywords=${keywords}`)
+			  .then((res)=>{
+			  	if(res.data.data.rows.length){
+					this.schoolListDatas = res.data.data.rows;
+				}else{
+					this.schoolListDatas = res.data.data.rows;
+				}
+
+			  })
+	  }
   },
   created(){
-    this.getSchoolList();
-//    console.log(this.$route.params.keywords);
+	  this.getSchoolList(this.defaultType);
+/*	  this.$nextTick(function(){
+		this.getSchoolList(this.defaultType);
+	})*/
   }
 }
 
