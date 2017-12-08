@@ -138,7 +138,7 @@ export default {
 		}
 	  },
 	created(){
-		console.log(this.$props)
+//		console.log(this.$props)
 		let id = this.$route.query.id;
 		this.getSchoolLists(id);
 	}

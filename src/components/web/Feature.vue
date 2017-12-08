@@ -2,7 +2,6 @@
   <div class="prefecture-container">
     <h3 class="title">
 			留学特色
-			<span class="subhead">待提供的软文</span>
 		</h3>
     <ul class="perfecture-list">
       <li class="perfecture-each">
@@ -30,7 +29,7 @@
       <li class="perfecture-each">
         <div class="perfecture-each-bg">
           <img src="/static/image/teshe3.jpg" alt="">
- 
+
         </div>
         <div class="perfecture-object">
         	<h5>热门特色<span>MORE</span></h5>

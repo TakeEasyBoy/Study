@@ -20,36 +20,35 @@
         <div class="form-inline">
           <span>意向国家</span>
           <div class="form-main">
-            <Select v-model="applyDatas.state" placeholder="选择意向国家">
+            <Select v-model="applyDatas.country" placeholder="选择意向国家">
               <Option value="1" style="font-size: 14px!important">美国</Option>
-              <Option value="2" style="font-size: 14px!important">德国</Option>
-              <Option value="3" style="font-size: 14px!important">加拿大</Option>
-              <Option value="4" style="font-size: 14px!important">英国</Option>
-              <Option value="5" style="font-size: 14px!important">法国</Option>
             </Select>
           </div>
         </div>
         <div class="form-inline">
           <span>申请学历</span>
           <div class="form-main">
-            <Select v-model="applyDatas.state" placeholder="选择意向国家">
-              <Option value="1" style="font-size: 14px!important">美国</Option>
-              <Option value="2" style="font-size: 14px!important">德国</Option>
-              <Option value="3" style="font-size: 14px!important">加拿大</Option>
-              <Option value="4" style="font-size: 14px!important">英国</Option>
-              <Option value="5" style="font-size: 14px!important">法国</Option>
+            <Select v-model="applyDatas.qualifications" placeholder="选择申请学历">
+              <Option value="1" style="font-size: 14px!important">大学</Option>
+              <Option value="2" style="font-size: 14px!important">高中</Option>
+              <Option value="3" style="font-size: 14px!important">研究生</Option>
             </Select>
           </div>
         </div>
         <div class="form-inline">
           <span>在读年级 </span>
           <div class="form-main">
-            <Select v-model="applyDatas.state" placeholder="选择意向国家">
-              <Option value="1" style="font-size: 14px!important">美国</Option>
-              <Option value="2" style="font-size: 14px!important">德国</Option>
-              <Option value="3" style="font-size: 14px!important">加拿大</Option>
-              <Option value="4" style="font-size: 14px!important">英国</Option>
-              <Option value="5" style="font-size: 14px!important">法国</Option>
+            <Select v-model="applyDatas.grade" placeholder="选择在读年级">
+              <Option value="1" style="font-size: 14px!important">初一</Option>
+              <Option value="2" style="font-size: 14px!important">初二</Option>
+              <Option value="3" style="font-size: 14px!important">初三</Option>
+              <Option value="4" style="font-size: 14px!important">高一</Option>
+              <Option value="5" style="font-size: 14px!important">高二</Option>
+              <Option value="6" style="font-size: 14px!important">高三</Option>
+              <Option value="7" style="font-size: 14px!important">大一</Option>
+              <Option value="8" style="font-size: 14px!important">大二</Option>
+              <Option value="9" style="font-size: 14px!important">大三</Option>
+              <Option value="10" style="font-size: 14px!important">大四</Option>
             </Select>
           </div>
         </div>
@@ -77,19 +76,19 @@
       </div>
       <ul class="online-service-main">
         <li>
-          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456789&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
+          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=179158105&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
             <span class="service-logo"></span>
             <span class="service-text">客服1</span>
           </a>
         </li>
         <li>
-          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456789&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
+          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=36291722&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
             <span class="service-logo"></span>
             <span class="service-text">客服2</span>
           </a>
         </li>
         <li>
-          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456789&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
+          <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=48613027&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
             <span class="service-logo"></span>
             <span class="service-text">客服3</span>
           </a>
@@ -105,9 +104,9 @@ export default {
   data() {
     return {
         applyDatas: {
-            state: '',
-            name: '',
-            phone:''
+			country: '',
+			qualifications: '',
+			grade:''
         },
         isHideApply:true,
         isHideService:true,
@@ -267,7 +266,7 @@ export default {
   }
   .online-service-header {
     height: 34px;
-    outline: 1px solid red;
+    /*outline: 1px solid red;*/
   }
   .online-service-main {
     background-color: #fff;

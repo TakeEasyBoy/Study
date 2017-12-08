@@ -5,44 +5,45 @@
 			<span class="subhead">教育百强企业，IOS9001认证，国内1000家高校建立合作关系</span>
 		</h3>
 		<div class="capacity-main">
-			<div class="capacity-main-one">
+			<img src="/static/image/NENGLI.jpg" height="469" width="1219"/>
+			<!--<div class="capacity-main-one">
 				<div class="capacity-one-list">
 					<img src="/static/image/nengli1.jpg" alt="">
-					
+
 				</div>
 				<div class="capacity-one-list">
 					<img src="/static/image/nengli1.jpg" alt="">
-					
+
 				</div>
 				<div class="capacity-one-list">
 					<img src="/static/image/nengli1.jpg" alt="">
-					
+
 				</div>
 			</div>
 			<div  class="capacity-main-two">
 				<div class="capacity-two-top">
 					<img src="/static/image/nengli1.jpg" alt="">
-					
+
 				</div>
 				<div class="capacity-two-bottom">
 					<img src="/static/image/nengli5.jpg" alt="">
-					
+
 				</div>
 			</div>
 			<div  class="capacity-main-three">
 				<img src="/static/image/nengli6.jpg" alt="">
-					
+
 			</div>
 			<div  class="capacity-main-two">
 				<div class="capacity-two-top">
 					<img src="/static/image/nengli1.jpg" alt="">
-					
+
 				</div>
 				<div class="capacity-two-bottom">
 					<img src="/static/image/nengli5.jpg" alt="">
-					
+
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </template>
@@ -74,14 +75,14 @@
 				height: 150px;
 				width: 100%;
 				margin-bottom: 10px;
-				
+
 				font-size: 12px;
 				position: relative;
 				&:last-child{
 					margin-bottom: 0;
 				}
-				
-				
+
+
 			}
 			img{
 					height: 100%;
@@ -98,7 +99,7 @@
 					opacity: 0.4;
 					z-index: 10;
 				}
-			
+
 			.capacity-main-two{
 				float: left;
 				width: 280px;

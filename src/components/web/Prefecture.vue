@@ -54,7 +54,7 @@ export default {
     // 跳转到指定页面
     jumpTo(index){
 //        console.log(index);
-        this.$router.push(this.dataUrl[index]);
+        this.$router.push({path:this.dataUrl[index],query:{id:index+1}});
     }
   }
 }

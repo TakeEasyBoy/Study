@@ -1,14 +1,14 @@
 <template>
   <div class="web-header">
     <div class="web-header-main">
-      <div class="logo"></div>
+      <div class="logo" @click="$router.push('/')"></div>
       <div class="search">
         <Select v-model="searchType"  class="search-select">
-          <Option value="1" style="font-size: 14px!important">全 部</Option>
+          <Option value="1" style="font-size: 14px!important">夏校</Option>
           <Option value="2" style="font-size: 14px!important">交换生院校</Option>
           <Option value="3" style="font-size: 14px!important">专升本院校</Option>
-          <Option value="4" style="font-size: 14px!important">夏 校</Option>
-          <Option value="5" style="font-size: 14px!important">直 升</Option>
+          <Option value="4" style="font-size: 14px!important">直升</Option>
+          <Option value="5" style="font-size: 14px!important">插班生</Option>
         </Select>
         <input type="text" class="search-input" @keyup.enter="searchMethod" v-model="searchKey">
         <Button @click='searchMethod' class="search-btn">搜 索</Button>
@@ -85,7 +85,6 @@ export default {
     	let obj = {};
     	switch(type) {
 			case '1':
-			case '4':
 				obj.jumpPath = './summersch';
 				obj.jumpName = 'Summersch';
 				break;
@@ -97,9 +96,13 @@ export default {
 				obj.jumpPath = './undergraduate';
 				obj.jumpName = 'Undergraduate';
 				break;
-			case '5':
+			case '4':
 				obj.jumpPath = './ueec';
 				obj.jumpName = 'Ueec';
+				break;
+			case '5':
+				obj.jumpPath = './freshman';
+				obj.jumpName = 'Freshman';
 				break;
 			default:
 				break;

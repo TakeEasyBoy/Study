@@ -26,11 +26,10 @@
     			<h5>{{item.enName}}</h5>
     			<span>{{item.cost}} 关注</span>
     			<div class="overflow:hidden;">
-    				<div class="btn-default">
-    					方案
-    				</div>
     				<div class="btn-error">
-    					咨询
+						<a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=179158105&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
+							咨询
+						</a>
     				</div>
     			</div>
     		</div>
@@ -304,11 +303,15 @@ export default {
     	color: #fff;
     	width: 50px;
     	height: 16px;
-    	float: right;
+    	/*float: right;*/
+		margin:0 auto;
     	line-height: 16px;
     	background-color: #fe0000;
     	text-align: center;
-    	cursor: pointer;
+		cursor: pointer;
+		a{
+			color:#fff;
+		}
     }
   }
 }
