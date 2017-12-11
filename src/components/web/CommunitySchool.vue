@@ -6,8 +6,10 @@
 		  </div>
 		  <div class="content-text fl">
 			  <div class="content-title">
-				  <span>{{item.name}}</span><button >咨询</button>
-			  </div>
+				  <span>{{item.name}}</span>
+				  <a title="点击这里咨询客服" href="http://wpa.qq.com/msgrd?v=3&amp;uin=179158105&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank">
+					  <button >咨询</button>
+				  </a>			  </div>
 			  <div class="content-content">
 				  <div class="part-two fl">
 					  <span>所在州省：{{item.area}}</span>

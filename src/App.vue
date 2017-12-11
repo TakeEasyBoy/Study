@@ -127,6 +127,9 @@ export default {
       },
       closeApply(){
           this.isHideApply = true;
+          this.applyDatas.country = '';
+          this.applyDatas.qualifications = '';
+          this.applyDatas.grade = '';
           // console.log(this.isHideApply);
       }
   },
