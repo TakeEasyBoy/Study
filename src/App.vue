@@ -21,17 +21,17 @@
           <span>意向国家</span>
           <div class="form-main">
             <Select v-model="applyDatas.country" placeholder="选择意向国家">
-              <Option value="1" style="font-size: 14px!important">美国</Option>
+              <Option value="美国" style="font-size: 14px!important">美国</Option>
             </Select>
           </div>
         </div>
         <div class="form-inline">
           <span>申请学历</span>
           <div class="form-main">
-            <Select v-model="applyDatas.qualifications" placeholder="选择申请学历">
-              <Option value="1" style="font-size: 14px!important">大学</Option>
-              <Option value="2" style="font-size: 14px!important">高中</Option>
-              <Option value="3" style="font-size: 14px!important">研究生</Option>
+            <Select v-model="applyDatas.education" placeholder="选择申请学历">
+              <Option value="大学" style="font-size: 14px!important">大学</Option>
+              <Option value="高中" style="font-size: 14px!important">高中</Option>
+              <Option value="研究生" style="font-size: 14px!important">研究生</Option>
             </Select>
           </div>
         </div>
@@ -55,16 +55,16 @@
         <div class="form-inline">
           <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
           <div class="form-main">
-            <Input v-model="applyDatas.name" placeholder="请输入您的姓名"></Input>
+            <Input v-model="applyDatas.fullName" placeholder="请输入您的姓名"></Input>
           </div>
         </div>
         <div class="form-inline">
           <span>手 机 号</span>
           <div class="form-main">
-            <Input v-model="applyDatas.phone" placeholder="请输入您的手机号"></Input>
+            <Input v-model="applyDatas.mobile" placeholder="请输入您的手机号"></Input>
           </div>
         </div>
-        <div class="apply-submit-btn">
+        <div class="apply-submit-btn" @click="submitBtn">
           立即报名
         </div>
       </div>
@@ -105,8 +105,10 @@ export default {
     return {
         applyDatas: {
 			country: '',
-			qualifications: '',
-			grade:''
+	        education: '',
+			grade:'',
+            fullName:'',
+            mobile:''
         },
         isHideApply:true,
         isHideService:true,
@@ -128,11 +130,35 @@ export default {
       closeApply(){
           this.isHideApply = true;
           this.applyDatas.country = '';
-          this.applyDatas.qualifications = '';
+          this.applyDatas.education = '';
           this.applyDatas.grade = '';
+          this.applyDatas.fullName = '';
+          this.applyDatas.mobile = '';
           // console.log(this.isHideApply);
+      },
+      checkValue(){
+      	if(this.applyDatas.country && this.applyDatas.education && this.applyDatas.grade && this.applyDatas.fullName &&　this.applyDatas.mobile){
+
+        }else{
+      		return;
+        }
+      },
+	  submitBtn(){
+      	this.checkValue();
+        this.$http.post(`/frontend/sign`,{
+        	params:{
+		        country:this.applyDatas.country,
+                education:this.applyDatas.education,
+                grade:this.applyDatas.grade,
+                fullName:this.applyDatas.fullName,
+                mobile:this.applyDatas.mobile
+            }})
+            .then((res)=>{
+            	console.log(res);
+            })
       }
   },
+
 }
 
 </script>

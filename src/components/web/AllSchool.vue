@@ -138,11 +138,26 @@ export default {
 					this.collegeLists = res.data.data.colleges.rows;
 //					console.log(this.collegeLists)
 				})
-		}
+		},
+	    searchResult(id,keywords){
+
+		    this.$http.get(`/frontend/college/search?keywords=${keywords}&cateId=${id}`)
+			    .then((res)=>{
+				    console.log('cooperationSchool',res);
+			    })
+	    }
 	  },
 	created(){
 //		console.log(this.$props)
+
+		let keywords = this.$route.query.keywords;
 		let id = this.$route.query.id;
+		//接口开放后在启用
+		/*if(keywords !==''){
+			this.searchResult(id,keywords);
+		}else{
+			this.getSchoolLists(id);
+        }*/
 		this.getSchoolLists(id);
 	}
 }

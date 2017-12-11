@@ -119,7 +119,7 @@ export default {
           query: {
               keywords: this.searchKey,
               type:this.searchType,
-			  id:2
+			  id:this.searchType
           }
       })
     }

@@ -82,8 +82,8 @@ export default {
     getHotSchool(){
       this.$http.get('/frontend/college/hotRecommend')
       .then((res)=>{
-              console.log(res.data.data);
-        this.hotSchoolDatas = res.data.data;
+              // console.log(res.data.data);
+          this.hotSchoolDatas = res.data.data;
       })
     },
     getSchoolRanking(){

@@ -115,10 +115,11 @@ export default {
 	  //人气
 	  sortHot(){
 		  console.log("sortHot")
-	  }
+	  },
+
   },
   created(){
-//	console.log('coor----',this.$route.query);
+	// console.log('coor----',this.$route.query);
 
   },
 }
