@@ -39,16 +39,16 @@
           <span>在读年级 </span>
           <div class="form-main">
             <Select v-model="applyDatas.grade" placeholder="选择在读年级">
-              <Option value="1" style="font-size: 14px!important">初一</Option>
-              <Option value="2" style="font-size: 14px!important">初二</Option>
-              <Option value="3" style="font-size: 14px!important">初三</Option>
-              <Option value="4" style="font-size: 14px!important">高一</Option>
-              <Option value="5" style="font-size: 14px!important">高二</Option>
-              <Option value="6" style="font-size: 14px!important">高三</Option>
-              <Option value="7" style="font-size: 14px!important">大一</Option>
-              <Option value="8" style="font-size: 14px!important">大二</Option>
-              <Option value="9" style="font-size: 14px!important">大三</Option>
-              <Option value="10" style="font-size: 14px!important">大四</Option>
+              <Option value="初一" style="font-size: 14px!important">初一</Option>
+              <Option value="初二" style="font-size: 14px!important">初二</Option>
+              <Option value="初三" style="font-size: 14px!important">初三</Option>
+              <Option value="高一" style="font-size: 14px!important">高一</Option>
+              <Option value="高二" style="font-size: 14px!important">高二</Option>
+              <Option value="高三" style="font-size: 14px!important">高三</Option>
+              <Option value="大一" style="font-size: 14px!important">大一</Option>
+              <Option value="大二" style="font-size: 14px!important">大二</Option>
+              <Option value="大三" style="font-size: 14px!important">大三</Option>
+              <Option value="大四" style="font-size: 14px!important">大四</Option>
             </Select>
           </div>
         </div>
@@ -100,6 +100,8 @@
 <script>
 import WebHeader from '@/components/web/Header'
 import WebFooter from '@/components/web/Footer'
+//使用iview的警告框进行个人申请表单验证的提示
+import {Modal} from 'iview'
 export default {
   data() {
     return {
@@ -112,6 +114,8 @@ export default {
         },
         isHideApply:true,
         isHideService:true,
+        //用于表示个人申请的表单是否为空
+        isDataComplete:false
     }
   },
   components: {
@@ -119,14 +123,16 @@ export default {
     WebFooter
   },
   methods:{
-      //客服QQ
+      //客服QQ按钮切换
       service(){
           this.isHideService = !this.isHideService;
       },
+      //个人申请按钮切换
       personalApply(){
           this.isHideApply = !this.isHideApply;
           // console.log(this.isHideApply);
       },
+      //手动关闭了申请报名的窗口,将数据清空
       closeApply(){
           this.isHideApply = true;
           this.applyDatas.country = '';
@@ -137,25 +143,85 @@ export default {
           // console.log(this.isHideApply);
       },
       checkValue(){
-      	if(this.applyDatas.country && this.applyDatas.education && this.applyDatas.grade && this.applyDatas.fullName &&　this.applyDatas.mobile){
-
-        }else{
-      		return;
-        }
+      	//手机校验
+            var mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+	      if(this.applyDatas.country == ''){
+		      Modal.warning({
+			      title: '警告',
+			      content: '意向国家不能为空',
+			      onOk: () => {
+				      // this.$router.push('/')
+			      }
+		      });
+		      return;
+	      }
+	      if(this.applyDatas.education == ''){
+		      Modal.warning({
+			      title: '警告',
+			      content: '申请学历不能为空',
+			      onOk: () => {
+				      // this.$router.push('/')
+			      }
+		      });
+		      return;
+	      }
+	      if(this.applyDatas.grade == ''){
+		      Modal.warning({
+			      title: '警告',
+			      content: '在读年级不能为空',
+			      onOk: () => {
+				      // this.$router.push('/')
+			      }
+		      });
+		      return;
+	      }
+	      if(this.applyDatas.fullName == ''){
+		      Modal.warning({
+			      title: '警告',
+			      content: '姓名不能为空',
+			      onOk: () => {
+				      // this.$router.push('/')
+			      }
+		      });
+		      return;
+	      }
+	      if(!mobileReg.test(this.applyDatas.mobile)){
+		      Modal.warning({
+			      title: '警告',
+			      content: '请输入正确的手机号码',
+			      onOk: () => {
+				      // this.$router.push('/')
+			      }
+		      });
+		      return;
+	      }
+	      this.isDataComplete = true;
       },
 	  submitBtn(){
+      	//非空校验
       	this.checkValue();
-        this.$http.post(`/frontend/sign`,{
-        	params:{
-		        country:this.applyDatas.country,
-                education:this.applyDatas.education,
-                grade:this.applyDatas.grade,
-                fullName:this.applyDatas.fullName,
-                mobile:this.applyDatas.mobile
-            }})
-            .then((res)=>{
-            	console.log(res);
-            })
+      	if(this.isDataComplete){
+	        this.$http.post(`/frontend/sign`,{
+		        params:{
+			        country:this.applyDatas.country,
+			        education:this.applyDatas.education,
+			        grade:this.applyDatas.grade,
+			        fullName:this.applyDatas.fullName,
+			        mobile:this.applyDatas.mobile
+		        }})
+		        .then((res)=>{
+			        console.log(res.data.data);
+			        Modal.success({
+				        title: '提示',
+				        content: '报名申请已提交',
+                        //提交完成后关闭报名对话框,防止用户重复提交
+				        onOk: () => {
+					        this.closeApply();
+				        }
+                    })
+		        })
+        }
+
       }
   },
 

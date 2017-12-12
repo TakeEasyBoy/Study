@@ -47,7 +47,7 @@ export default {
   	    getStudyAbord(){
 	        this.$http.get('/frontend/article/list')
 		        .then((res)=>{
-			        console.log(res.data.data);
+			        // console.log(res.data.data);
 			        this.enrolls = res.data.data.enroll;
 			        this.news = res.data.data.news;
 			        this.informations = res.data.data.information;
