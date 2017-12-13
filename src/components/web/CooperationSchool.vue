@@ -93,7 +93,10 @@ export default {
 		//  		console.log(item);
 			this.index = index;
 			// console.log(this.index);
-		//  		this.title[index].isActive = true;
+            for(let i = 0;i<this.title.length;i++){
+	            this.title[i].isActive = false;
+            }
+            this.title[index].isActive = true;
 		},
 	  //学校搜索
 	  searchSchool(keywords){
@@ -107,20 +110,32 @@ export default {
 	  },
 	  //综合排名
 	  sortRank(){
-		  console.log("sortRank")
+			this.$http.get(`/frontend/category/info?cateId=${this.$route.query.id}&sort=rank`)
+                .then((res)=>{
+                	// console.log(res.data.data.colleges.rows);
+	                this.searchDataList = res.data.data.colleges.rows
+                })
 	  },
 	  //总费用
 	  sortFee(){
-		  console.log("sortFee")
+		  this.$http.get(`/frontend/category/info?cateId=${this.$route.query.id}&sort=cost`)
+			  .then((res)=>{
+				  // console.log(res.data.data.colleges.rows);
+				  this.searchDataList = res.data.data.colleges.rows
+			  })
 	  },
 	  //人气
 	  sortHot(){
-		  console.log("sortHot")
+		  this.$http.get(`/frontend/category/info?cateId=${this.$route.query.id}&sort=follow`)
+			  .then((res)=>{
+				  // console.log(res.data.data.colleges.rows);
+				  this.searchDataList = res.data.data.colleges.rows
+			  })
 	  },
 
   },
   created(){
-	// console.log('coor----',this.$route.query);
+	console.log('coor----',this.$route.query);
 
   },
 }
