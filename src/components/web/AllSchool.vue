@@ -1,6 +1,6 @@
 <template>
   <div class="all-all" v-show="index == 0">
-  	<div class="content-one" v-for="(item,index) in collegeLists">
+  	<div class="content-one" v-for="(item,index) in keywordsSearch.length?keywordsSearch:collegeLists">
   		<div class="content-img fl">
   			<img src="/static/image/kuang.jpg" alt="">
   		</div>
@@ -37,12 +37,12 @@
   			</div>
   		</div>
   	</div>
-
   </div>
 </template>
 <script>
 export default {
-	props:['index','Keywords'],
+	//父组件传递查询的结果放在searchDataList
+	props:['index','Keywords','searchDataList'],
   	data() {
     	return {
     	 	columns1: [
@@ -104,7 +104,7 @@ export default {
             }
         ],
         	flag:true,
-			collegeLists:[]
+			collegeLists:[],
     	}
   	},
   	methods:{
@@ -118,48 +118,43 @@ export default {
   		 	$('.content-one').css('border','none');
   		 }*/
   		},
-		testData(){
-			this.$http.get('/frontend/category/nameList')
-				.then((res)=>{
-					console.log(res.data.data);
-					return res.data.data[1].id;
-				})
-				.then((id)=>{
-					this.$http.get(`/frontend/category/info?cateId=${id}&type=全部`)
-						.then((res)=>{
-//							console.log(res.data.data);
-						})
-				})
-		},
+
 		getSchoolLists(id){
 			this.$http.get(`/frontend/category/info?cateId=${id}`)
 				.then((res)=>{
-
+					// console.log(res);
 					this.collegeLists = res.data.data.colleges.rows;
-//					console.log(this.collegeLists)
 				})
 		},
 	    searchResult(id,keywords){
-
 		    this.$http.get(`/frontend/college/search?keywords=${keywords}&cateId=${id}`)
 			    .then((res)=>{
-				    console.log('cooperationSchool',res);
+				    console.log('cooperationSchool',res.data.data);
+				    if(res.data.data.totalRows.length){
+					    this.collegeLists = res.data.data.rows;
+                    }else{
+					    // this.collegeLists = res.data.data.colleges.rows;
+                    }
 			    })
 	    }
 	  },
 	created(){
-//		console.log(this.$props)
-
 		let keywords = this.$route.query.keywords;
 		let id = this.$route.query.id;
-		//接口开放后在启用
-		/*if(keywords !==''){
+		//每次渲染该组件时,需要对当前的关键词进行判断,如果关键词存在,则执行搜索查询,若不存在,则执行列表查询
+		if(keywords){
 			this.searchResult(id,keywords);
 		}else{
 			this.getSchoolLists(id);
-        }*/
-		this.getSchoolLists(id);
-	}
+        }
+        // console.log(this.$props.searchDataList)
+	},
+    //
+    computed:{
+	    keywordsSearch:function () {
+            return this.$props.searchDataList
+	    }
+    }
 }
 
 </script>

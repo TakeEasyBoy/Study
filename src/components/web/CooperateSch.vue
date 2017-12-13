@@ -103,7 +103,6 @@ export default {
 					this.schoolListDatas = res.data.data.rows;
 				})
 		}
-
     },
 	  //搜索
 	  getSearchResult(keywords){

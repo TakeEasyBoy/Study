@@ -118,7 +118,7 @@ export default {
       // }
     },
 	  getSchoolLists(id){
-		  this.$http.get(`/frontend/category/info?cateId=${id}&type=文理学院`)
+		  this.$http.get(`/frontend/category/info?cateId=${id}&type=中学`)
 			  .then((res)=>{
 				  this.collegeLists = res.data.data.colleges.rows;
 //				  console.log(this.collegeLists)

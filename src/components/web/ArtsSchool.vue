@@ -111,7 +111,7 @@ export default {
 		this.flag = !this.flag;
     },
 	  getSchoolLists(id){
-		  this.$http.get(`/frontend/category/info?cateId=${id}&type=大学`)
+		  this.$http.get(`/frontend/category/info?cateId=${id}&type=艺术学院`)
 			  .then((res)=>{
 				  this.collegeLists = res.data.data.colleges.rows;
 //				  console.log(this.collegeLists)

@@ -201,14 +201,9 @@ export default {
       	//非空校验
       	this.checkValue();
       	if(this.isDataComplete){
-	        this.$http.post(`/frontend/sign`,{
-		        params:{
-			        country:this.applyDatas.country,
-			        education:this.applyDatas.education,
-			        grade:this.applyDatas.grade,
-			        fullName:this.applyDatas.fullName,
-			        mobile:this.applyDatas.mobile
-		        }})
+	        this.$http.post(`/frontend/sign?country=${this.applyDatas.country}&education=${this.applyDatas.education}
+	                        &grade=${this.applyDatas.grade}&fullName=${this.applyDatas.fullName}&mobile=${this.applyDatas.mobile}
+	                        `)
 		        .then((res)=>{
 			        console.log(res.data.data);
 			        Modal.success({
