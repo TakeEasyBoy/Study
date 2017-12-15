@@ -24,11 +24,11 @@
 
 			<div class="cooper-content">
 				<AllSchool :index = 'index' :searchDataList="searchDataList"></AllSchool>
-				<University :index = 'index'></University>
-				<MiddleSchool :index = 'index'></MiddleSchool>
-				<ArtsSchool :index = 'index'></ArtsSchool>
-				<ScienceSchool :index = 'index'></ScienceSchool>
-				<CommunitySchool :index = 'index'></CommunitySchool>
+				<University :index = 'index' :searchDataList="searchDataList"></University>
+				<MiddleSchool :index = 'index' :searchDataList="searchDataList"></MiddleSchool>
+				<ArtsSchool :index = 'index' :searchDataList="searchDataList"></ArtsSchool>
+				<ScienceSchool :index = 'index' :searchDataList="searchDataList"></ScienceSchool>
+				<CommunitySchool :index = 'index' :searchDataList="searchDataList"></CommunitySchool>
 			</div>
 		</div>
   </div>
@@ -100,12 +100,10 @@ export default {
 		},
 	  //学校搜索
 	  searchSchool(keywords){
-//  		  console.log('search school',keywords);
-
 		  this.$http.get(`/frontend/college?keywords=${keywords}`)
 			  .then((res)=>{
-			  	    this.searchDataList = res.data.data.rows
-					// console.log(res.data.data);
+				  // console.log(res.data.data);
+				  this.searchDataList = res.data.data.rows
 			  })
 	  },
 	  //综合排名
@@ -135,7 +133,6 @@ export default {
 
   },
   created(){
-	console.log('coor----',this.$route.query);
 
   },
 }

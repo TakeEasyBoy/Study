@@ -41,7 +41,7 @@
 </template>
 <script>
 export default {
-  props:['index'],
+  props:['index','searchDataList'],
   data() {
     return {
        columns1: [
@@ -121,7 +121,12 @@ export default {
   mounted(){
 	  let id = this.$route.query.id;
 	  this.getSchoolLists(id);
-  }
+  },
+	computed:{
+		keywordsSearch:function () {
+			return this.$props.searchDataList
+		}
+	}
 }
 
 </script>

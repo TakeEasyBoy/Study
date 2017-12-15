@@ -63,16 +63,16 @@ export default {
   		getSearchResult(id,type,keywords){
   			this.$http.get(`/frontend/college?keywords=${keywords}`)
 				.then((res)=>{
-					console.log(res.data.data);
+					// console.log(res.data.data);
 				})
 		}
 	},
   	created(){
 //  		console.log(this.$route.query);
-  		let _id = this.$route.query.id;
-  		let _type = this.$route.query.type;
-  		let _keywords = this.$route.query.keywords;
-		this.getSearchResult(_id,_type,_keywords);
+//   		let _id = this.$route.query.id;
+//   		let _type = this.$route.query.type;
+//   		let _keywords = this.$route.query.keywords;
+// 		this.getSearchResult(_id,_type,_keywords);
 	}
 }
 

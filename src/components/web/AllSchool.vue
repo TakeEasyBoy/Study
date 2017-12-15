@@ -55,11 +55,11 @@ export default {
                 key: 'age'
             },
             {
-                title: '全美排名',
+                title: '全球排名',
                 key: 'address'
             },
             {
-                title: '全美排名',
+                title: '专业',
                 key: 'date'
             },
             {
@@ -129,7 +129,7 @@ export default {
 	    searchResult(id,keywords){
 		    this.$http.get(`/frontend/college/search?keywords=${keywords}&cateId=${id}`)
 			    .then((res)=>{
-				    console.log('cooperationSchool',res.data.data);
+				    // console.log('cooperationSchool',res.data.data);
 				    if(res.data.data.totalRows.length){
 					    this.collegeLists = res.data.data.rows;
                     }else{
@@ -153,8 +153,21 @@ export default {
     computed:{
 	    keywordsSearch:function () {
             return this.$props.searchDataList
-	    }
+	    },
+    },
+    watch:{
+		//监听关键词变化,再次请求查询api,
+		"$route.query.keywords":{
+			handler:function (val,oldval) {
+				let keywords = this.$route.query.keywords;
+				let id = this.$route.query.id;
+				this.searchResult(id, keywords);
+				// console.log('watch',val,oldval)
+			},
+            immediate:true
+		}
     }
+
 }
 
 </script>
