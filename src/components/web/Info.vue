@@ -2,31 +2,16 @@
   <div class="info-container">
     <h5>留学资讯</h5>
     <ul>
-      <li @click="$router.push('/infolist/details')" v-for="(item,index) in dataLists">
+      <li @click="$router.push({path:'/infolist/details',query:{id:item.id}})" v-for="(item,index) in dataLists">
         <p>{{item.title}}</p>
         <span>{{item.createTime}}</span>
       </li>
-      <!--<li>
-        <p>资讯留学标题</p>
-        <span>2017-02-15 02:32:25</span>
-      </li>
-      <li>
-        <p>资讯留学标题</p>
-        <span>2017-02-15 02:32:25</span>
-      </li>
-      <li>
-        <p>资讯留学标题</p>
-        <span>2017-02-15 02:32:25</span>
-      </li>
-      <li>
-        <p>资讯留学标题</p>
-        <span>2017-02-15 02:32:25</span>
-      </li>-->
     </ul>
   </div>
 </template>
 <script>
 export default {
+    props:['currentDataLists'],
 	data() {
 		return {
             dataLists:[]
@@ -36,13 +21,22 @@ export default {
 		getStudyAbord(){
 			this.$http.get('/frontend/article/list')
 				.then((res)=>{
-					this.dataLists = res.data.data.information;
+					// console.log(res.data.data.information)
+					this.dataLists = res.data.data.news;
 				})
 		}
 	},
 	created(){
 		this.getStudyAbord();
 	},
+    computed:{
+
+    },
+    watch:{
+        "$props.currentDataLists":function(val,oldval){
+        	this.dataLists = val;
+        }
+    },
 	mounted(){
 //		this.getStudyAbord();
 	}

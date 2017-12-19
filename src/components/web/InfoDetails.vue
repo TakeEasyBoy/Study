@@ -21,19 +21,19 @@
 			}
 		},
 		methods:{
-			//获取新闻详情方法
+			//获取新闻详情方法  接口有问题,无论id是什么,数据都是id为3的数据 2017-12-17
             getNewsDetail(id){
             	this.$http.get('/frontend/article/news?id='+id)
                     .then((res)=>{
-                    	this.newsDetails = res.data.data[0];
-                    	// console.log(res.data.data[0])
+	                    console.log(res.data.data[0])
+	                    this.newsDetails = res.data.data[0];
                     })
             }
         },
         created(){
 			//获取查询ID
 			this.queryId = this.$route.query.id;
-//			console.log(this.queryId)
+			// console.log(this.queryId)
 			this.getNewsDetail(this.queryId);
         },
         mounted() {
