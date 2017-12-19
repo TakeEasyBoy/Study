@@ -106,6 +106,7 @@ export default {
 			    //更新路由中的数据
 			    this.currentDataLists = temp;
 		    }else{
+  	    		//显然还有问题
 			    temp = this.areaThree;
 			    this.areaThree = this.currentDataLists;
 			    this.currentDataLists = temp;
