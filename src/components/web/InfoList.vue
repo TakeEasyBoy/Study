@@ -18,14 +18,14 @@
       	</div>
         <div class="info-recommend">
           <div>
-            <h5>最新动态<span @click="moreFuncTwo">MORE</span></h5>
-            <p v-for="(item,index) in changeStatusTwo?areaTwo:informations">
+            <h5>{{areaTwo.length?getCurType(this.areaTwo[0].type):"最新动态"}}<span @click="moreFuncTwo">MORE</span></h5>
+            <p v-for="(item,index) in areaTwo">
                 {{item.content}}
             </p>
           </div>
           <div>
-            <h5>最新录取<span @click="moreFuncThree">MORE</span></h5>
-              <p v-for="(item,index) in changeStatusThree?areaThree:enrolls">
+            <h5>{{areaThree.length?getCurType(this.areaThree[0].type):"最新录取"}}<span @click="moreFuncThree">MORE</span></h5>
+              <p v-for="(item,index) in areaThree">
                   {{item.content}}
               </p>
           </div>
@@ -39,87 +39,65 @@ export default {
 
   data() {
     return {
-        enrolls:[],
-        news:[],
-        informations:[],
-	    //当前状态
+	    //区域1当前显示状态
 	    currentDataLists:[],
-	    //区域2 3,显示其他
-	    dataLists:[],
+	    //用于存放各个却与显示的数据
         areaOne:[],
 	    areaTwo:[],
 	    areaThree:[],
-        //更新当前区域的标志
-        changeStatusTwo:false,
-        changeStatusThree:false,
+        //用于存放显示的标题
+        areaOneTitle:'',
+        areaTwoTitle:'',
+        areaThreeTitle:'',
     }
   },
     methods:{
-  	    getCurrentType(){
+  	    getCurType(type){
+  	    	let curType = ''
+  	    	switch (type){
+                case 1:
+                	curType = '最新动态';
+                	break;
+		        case 2:
+			        curType = '最新录取';
+			        break;
+		        case 3:
+			        curType = '留学资讯';
+			        break;
+            }
+            return curType;
         },
-
   	    getStudyAbord(){
 	        this.$http.get('/frontend/article/list')
 		        .then((res)=>{
-			        console.log(res.data.data);
-			        this.enrolls = res.data.data.enroll;//录取
-			        this.news = res.data.data.news;//动态
-			        this.informations = res.data.data.information;//资讯
-                    this.areaOne = this.informations;
+
+			        this.areaOne = res.data.data.information;//资讯
+			        this.areaTwo = res.data.data.news;//动态
+			        this.areaThree = res.data.data.enroll;//录取
+			        this.updateStatus = true;
 		        })
         },
+        //位置二同位置一的交换
 	    moreFuncTwo(){
   	    	let temp = [];
-  	    	if(!this.changeStatusTwo){
-		        this.changeStatusTwo = true;
-		        //保存当前第二区域的数据,第一次点击的时候为空
-                if(!this.areaTwo){
-	                temp = this.areaTwo;
-                }else{
-                	temp = this.news;
-                }
-		        //第二区域数据更新,同第一区域的数据进行交换
-		        this.areaTwo = this.areaOne;
-		        //更新路由中的数据
-		        this.currentDataLists = temp;
-            }else{
-
-		        temp = this.areaTwo;
-		        this.areaTwo = this.currentDataLists;
-		        this.currentDataLists = temp;
-            }
-
+            temp = this.areaTwo;
+            this.areaTwo = this.areaOne;
+            this.areaOne = temp;
+            this.currentDataLists = temp;
         },
+        //位置三同位置一的交换
 	    moreFuncThree(){
-  	    	let temp = []
-		    if(!this.changeStatusThree){
-			    this.changeStatusThree = true;
-
-			    //保存当前第二区域的数据,第一次点击的时候为空
-			    if(!this.areaThree){
-				    temp = this.areaThree;
-			    }else{
-				    temp = this.news;
-			    }
-			    //第二区域数据更新,同第一区域的数据进行交换
-			    this.areaThree = this.areaOne;
-			    //更新路由中的数据
-			    this.currentDataLists = temp;
-		    }else{
-  	    		//显然还有问题
-			    temp = this.areaThree;
-			    this.areaThree = this.currentDataLists;
-			    this.currentDataLists = temp;
-		    }
+            let temp = [];
+            temp = this.areaThree;
+            this.areaThree = this.areaOne;
+            this.areaOne = temp;
+            this.currentDataLists = temp;
 	    },
 
     },
     created(){
 		this.getStudyAbord();
     },
-    mounted(){
-//  	    this.getStudyAbord();
-    }
 }
 
 </script>

@@ -84,25 +84,26 @@ export default {
     },
 	getPathName(type){
     	let obj = {};
+    	//跳转必须是绝对路径
     	switch(type) {
 			case '1':
-				obj.jumpPath = './summersch';
+				obj.jumpPath = '/summersch';
 				obj.jumpName = 'Summersch';
 				break;
 			case '2':
-				obj.jumpPath = './exchangestu';
+				obj.jumpPath = '/exchangestu';
 				obj.jumpName = 'Exchangestu';
 				break;
 			case '3':
-				obj.jumpPath = './undergraduate';
+				obj.jumpPath = '/undergraduate';
 				obj.jumpName = 'Undergraduate';
 				break;
 			case '4':
-				obj.jumpPath = './ueec';
+				obj.jumpPath = '/ueec';
 				obj.jumpName = 'Ueec';
 				break;
 			case '5':
-				obj.jumpPath = './freshman';
+				obj.jumpPath = '/freshman';
 				obj.jumpName = 'Freshman';
 				break;
 			default:
@@ -112,8 +113,6 @@ export default {
 	},
       /*搜索功能,*/
     searchMethod(){
-		/*console.log(this.getPathName(this.searchType));
-     console.log(this.searchKey,this.searchType);*/
       this.$router.push({
           path:this.getPathName(this.searchType).jumpPath ,
           name:this.getPathName(this.searchType).jumpName ,
