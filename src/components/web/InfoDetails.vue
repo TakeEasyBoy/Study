@@ -21,12 +21,11 @@
 			}
 		},
 		methods:{
-			//获取新闻详情方法  接口有问题,无论id是什么,数据都是id为3的数据 2017-12-17
             getNewsDetail(id){
-            	this.$http.get('/frontend/article/news?id='+id)
+            	this.$http.get('/frontend/article/detail?articleId='+id)
                     .then((res)=>{
-	                    console.log(res.data.data[0])
-	                    this.newsDetails = res.data.data[0];
+	                    console.log(res.data.data)
+	                    this.newsDetails = res.data.data;
                     })
             }
         },
@@ -37,7 +36,14 @@
 			this.getNewsDetail(this.queryId);
         },
         mounted() {
+        	
+        },
+        watch:{
+        	"$props.queryId":function(val,oldval){
+        		console.log(val)
+        	}
         }
+        
 	}
 </script>
 

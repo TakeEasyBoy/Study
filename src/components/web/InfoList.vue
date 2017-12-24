@@ -56,7 +56,7 @@ export default {
   	    	let curType = ''
   	    	switch (type){
                 case 1:
-                	curType = '最新动态';
+                	curType = '新闻动态';
                 	break;
 		        case 2:
 			        curType = '最新录取';
@@ -70,7 +70,6 @@ export default {
   	    getStudyAbord(){
 	        this.$http.get('/frontend/article/list')
 		        .then((res)=>{
-
 			        this.areaOne = res.data.data.information;//资讯
 			        this.areaTwo = res.data.data.news;//动态
 			        this.areaThree = res.data.data.enroll;//录取
@@ -84,6 +83,8 @@ export default {
             this.areaTwo = this.areaOne;
             this.areaOne = temp;
             this.currentDataLists = temp;
+            //在新闻详情页面的时候，页面需要跳转到新闻列表
+            this.$router.push('/infolist');
         },
         //位置三同位置一的交换
 	    moreFuncThree(){
@@ -92,11 +93,13 @@ export default {
             this.areaThree = this.areaOne;
             this.areaOne = temp;
             this.currentDataLists = temp;
+            //在新闻详情页面的时候，页面需要跳转到新闻列表
+            this.$router.push('/infolist');
 	    },
 
     },
     created(){
-		this.getStudyAbord();
+			this.getStudyAbord();
     },
 }
 
