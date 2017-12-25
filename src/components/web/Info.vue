@@ -19,18 +19,18 @@ export default {
 		}
 	},
 	methods:{
-		getStudyAbord(){
-			this.$http.get('/frontend/article/list')
+		getStudyAbord(type){
+			this.$http.get(`/frontend/article/news?type=${type}`)
 				.then((res)=>{
-					// console.log(res.data.data.information)
-					this.dataLists = res.data.data.information;
+					console.log(res.data.data)
+					this.dataLists = res.data.data.current.list;
 				})
 		},
 		getCurType(type){
 			let curType = '';
 			switch (type){
 				case 1:
-					curType = '最新动态';
+					curType = '新闻动态';
 					break;
 				case 2:
 					curType = '最新录取';
@@ -43,7 +43,9 @@ export default {
 		},
 	},
 	created(){
-		this.getStudyAbord();
+		let type = this.$route.query.type;
+		this.curType = type;
+		this.getStudyAbord(type);
 	},
     computed:{
 

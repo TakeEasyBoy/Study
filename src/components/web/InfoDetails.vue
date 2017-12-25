@@ -24,7 +24,7 @@
             getNewsDetail(id){
             	this.$http.get('/frontend/article/detail?articleId='+id)
                     .then((res)=>{
-	                    console.log(res.data.data)
+	                    // console.log(res.data.data)
 	                    this.newsDetails = res.data.data;
                     })
             }

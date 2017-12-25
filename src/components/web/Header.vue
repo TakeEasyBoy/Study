@@ -4,7 +4,7 @@
       <div class="logo" @click="$router.push('/')"></div>
       <div class="search">
         <Select v-model="searchType"  class="search-select">
-            <Option value="0" style="font-size: 14px!important">全部</Option>
+            <!--<Option value="0" style="font-size: 14px!important">全部</Option>-->
           <Option value="1" style="font-size: 14px!important">夏校</Option>
           <Option value="2" style="font-size: 14px!important">交换生院校</Option>
           <Option value="3" style="font-size: 14px!important">专升本院校</Option>
@@ -37,7 +37,7 @@
 export default {
   data() {
     return {
-      searchType: '0',
+      searchType: '1',
       searchKey: '',
       nav:1,
 		jumpName:'',

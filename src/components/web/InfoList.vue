@@ -67,39 +67,63 @@ export default {
             }
             return curType;
         },
-  	    getStudyAbord(){
-	        this.$http.get('/frontend/article/list')
-		        .then((res)=>{
-			        this.areaOne = res.data.data.information;//资讯
-			        this.areaTwo = res.data.data.news;//动态
-			        this.areaThree = res.data.data.enroll;//录取
-			        this.updateStatus = true;
-		        })
-        },
+	    getStudyAbord(type){
+		    this.$http.get('/frontend/article/list')
+			    .then((res)=>{
+				    if(type == "2"){
+					    this.areaOne = res.data.data.enroll;
+					    this.areaTwo = res.data.data.information;
+					    this.areaThree = res.data.data.news;
+					    return;
+				    }else if(type == "3"){
+					    this.areaOne = res.data.data.information;//资讯3
+					    this.areaTwo = res.data.data.news;//动态 1
+					    this.areaThree = res.data.data.enroll;//录取2
+					    return;
+				    }else{
+					    this.areaOne = res.data.data.news;//资讯3
+					    this.areaTwo = res.data.data.information;//动态 1
+					    this.areaThree = res.data.data.enroll;//录取2
+                    }
+
+			    })
+	    },
         //位置二同位置一的交换
 	    moreFuncTwo(){
   	    	let temp = [];
+  	    	let type = '';
+  	    	//当前状态的类型
+  	    	type = this.areaTwo[0].type;
+  	    	//缓存当前的数据
             temp = this.areaTwo;
+            //将要区域1的数据替换到区域2
             this.areaTwo = this.areaOne;
+            //将区域1的数据换成点击前的数据
             this.areaOne = temp;
             this.currentDataLists = temp;
             //在新闻详情页面的时候，页面需要跳转到新闻列表
-            this.$router.push('/infolist');
+            this.$router.push({path:'/infolist',query:{type:type}});
         },
         //位置三同位置一的交换
 	    moreFuncThree(){
             let temp = [];
+		    let type = '';
+		    //当前状态的类型
+		    type = this.areaThree[0].type;
             temp = this.areaThree;
             this.areaThree = this.areaOne;
             this.areaOne = temp;
             this.currentDataLists = temp;
             //在新闻详情页面的时候，页面需要跳转到新闻列表
-            this.$router.push('/infolist');
+		    this.$router.push({path:'/infolist',query:{type:type}});
 	    },
 
     },
     created(){
-			this.getStudyAbord();
+        console.log(this.$route.query);
+	    let type = this.$route.query.type;
+	    this.curType = type;
+	    this.getStudyAbord(type);
     },
 }
 

@@ -8,7 +8,8 @@
       <div class="trend-new">
         <div class="trend-nav">
           最新动态
-          <span @click="$router.push('/infolist')">MORE</span>
+          <!--<span @click="$router.push({path:'/infolist',query:{type:1}})">MORE</span>-->
+            <span @click="$router.push('/infolist?type=1')">MORE</span>
         </div>
         <ul class="trend-content">
           <li v-for="(item,index) in recentNews">
@@ -30,7 +31,7 @@
       			<div class="trend-other-inline"></div>
       		</div>
       		<div class="trend-other-content">
-      			<h4>留学资讯<span @click="jumpToDetailes(abroadInfo.id)">MORE</span></h4>
+      			<h4>留学资讯<span @click="$router.push('/infolist?type='+abroadInfo.type)">MORE</span></h4>
       			<p>{{abroadInfo.content}}</p>
       		</div>
       	</div>
@@ -39,7 +40,7 @@
       			<div class="trend-other-inline1"></div>
       		</div>
       		<div class="trend-other-content">
-      			<h4>最新录取<span @click="jumpToDetailes(newOffer.id)">MORE</span></h4>
+      			<h4>最新录取<span @click="$router.push('/infolist?type='+newOffer.type)">MORE</span></h4>
       			<p>{{newOffer.content}}</p>
       		</div>
       	</div>
@@ -61,11 +62,9 @@ export default {
     getTrends(){
       this.$http.get('/frontend/article/list')
       .then((res)=>{
-        if (res.data.status == 200) {
-          this.recentNews = res.data.data.news;
-          this.abroadInfo = res.data.data.information[0];
-          this.newOffer = res.data.data.enroll[0];
-        }
+	      this.recentNews = res.data.data.news;
+	      this.abroadInfo = res.data.data.information[0];
+	      this.newOffer = res.data.data.enroll[0];
       })
     },
     jumpToDetailes(id){
